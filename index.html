@@ -56,18 +56,13 @@ header * { position: relative; z-index: 2; }
     border-bottom: 1px solid rgba(212,175,55,0.4);
 }
 
-.banner-nav.hide-logo .logo {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
 /* ================= LOGO ================= */
 .logo {
     max-width: 105px;
     animation: goldGlow 3s infinite ease-in-out;
     transition: opacity 0.3s ease, width 0.3s ease;
+    position: relative;
+    z-index: 1001;
 }
 
 @keyframes goldGlow {
@@ -181,7 +176,6 @@ h2 {
     justify-items: center;
 }
 
-/* ===== 200x200 IMAGE BOX ===== */
 .img-box {
     width: 200px;
     height: 200px;
@@ -194,14 +188,12 @@ h2 {
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Hover animation WITHOUT layout shift */
 .img-box:hover {
     transform: scale(1.06);
     box-shadow: 0 0 30px rgba(212,175,55,0.8);
     z-index: 2;
 }
 
-/* Label overlay */
 .img-box::after {
     content: attr(data-title);
     position: absolute;
@@ -215,7 +207,7 @@ h2 {
     text-align: center;
 }
 
-/* Individual destination images */
+/* Destination images */
 .jk { background-image: url('./images/jammukashmir.png'); }
 .up { background-image: url('./images/uttarpradesh.png'); }
 .kerala { background-image: url('./images/kerala.png'); }
@@ -296,7 +288,7 @@ footer {
 </header>
 
 <div class="hero-text">
-<h1>TRAVEL NOT JUST TO SEE THE WORLD… BUT TO FIND YOURSELF!!!</h1>
+<h1>TRAVEL NOT JUST TO SEE THE WORLD…<br> BUT TO FIND YOURSELF!!!</h1>
 <p>
 <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
 It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
@@ -308,11 +300,11 @@ The ‘soul’ of a journey is the transformation it brings, the stories it leav
 <section id="services">
 <h2>OUR SERVICES</h2>
 <div class="grid">
-<div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey, from flights and accommodations to tours and experiences.</p></div>
-<div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal interests, style, and aspirations.</p></div>
-<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support with private transfers and seamless assistance wherever you travel.</p></div>
-<div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries with precision, ensuring your trip reflects exactly what you desire.</p></div>
-<div class="box"><strong>Curated Collections</strong><p>A handpicked selection of exclusive resorts and luxury expedition cruises.</p></div>
+<div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey.</p></div>
+<div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around you.</p></div>
+<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support worldwide.</p></div>
+<div class="box"><strong>Bespoke Journey Design</strong><p>Precision-crafted itineraries.</p></div>
+<div class="box"><strong>Curated Collections</strong><p>Exclusive luxury resorts and cruises.</p></div>
 </div>
 </section>
 
@@ -358,7 +350,7 @@ The ‘soul’ of a journey is the transformation it brings, the stories it leav
 <strong>Email:</strong> journeys.soul.js@gmail.com |
 <strong>Phone:</strong> +91 9379173969 / 9980874534 |
 <strong>Facebook:</strong> Jassie Sudharshan |
-<strong>Instagram:</strong> <span style="white-space:nowrap;">Journey’s Soul by JS</span>
+<strong>Instagram:</strong> Journey’s Soul by JS
 </p>
 </section>
 
@@ -384,7 +376,6 @@ document.querySelectorAll("#navMenu a").forEach(link => {
 window.addEventListener("scroll", () => {
     const s = window.scrollY > 80;
     bannerNav.classList.toggle("sticky", s);
-    bannerNav.classList.toggle("hide-logo", s);
 
     document.querySelectorAll("section").forEach(sec => {
         const link = document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
@@ -398,4 +389,3 @@ window.addEventListener("scroll", () => {
 
 </body>
 </html>
-
