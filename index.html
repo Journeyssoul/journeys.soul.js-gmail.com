@@ -6,7 +6,6 @@
 <title>Journey’s Soul | Transformative Travel</title>
 
 <style>
-/* ===== GLOBAL ===== */
 html { scroll-behavior: smooth; }
 * { box-sizing: border-box; }
 
@@ -18,12 +17,11 @@ body {
     line-height: 1.7;
 }
 
-/* ===== HEADER / BANNER ===== */
+/* ================= HEADER / BANNER ================= */
 header {
     position: relative;
     background: url('banner.jpg') center / cover no-repeat;
-    padding: 220px 20px 160px;
-    text-align: center;
+    min-height: 65vh;
 }
 
 header::before {
@@ -36,18 +34,19 @@ header::before {
 
 header * { position: relative; z-index: 2; }
 
-/* ===== NAV ON BANNER ===== */
+/* ================= TOP NAV BAR ================= */
 .banner-nav {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 18px 32px;
+    height: 50px;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    z-index: 3;
-    transition: all 0.4s ease;
+    z-index: 1000;
+    transition: background 0.3s ease;
 }
 
 .banner-nav.sticky {
@@ -57,55 +56,54 @@ header * { position: relative; z-index: 2; }
     border-bottom: 1px solid rgba(212,175,55,0.4);
 }
 
-.banner-nav.centered {
-    grid-template-columns: 1fr;
-    justify-items: center;
+/* Hide logo safely without breaking grid */
+.banner-nav.hide-logo .logo {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
 
-/* ===== LOGO ===== */
+/* ================= LOGO ================= */
 .logo {
-    max-width: 120px;
+    max-width: 105px;
     animation: goldGlow 3s infinite ease-in-out;
+    transition: opacity 0.3s ease, width 0.3s ease;
 }
 
 @keyframes goldGlow {
-    0% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
-    50% { filter: drop-shadow(0 0 18px rgba(212,175,55,0.9)); }
-    100% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
+    0% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.4)); }
+    50% { filter: drop-shadow(0 0 14px rgba(212,175,55,0.9)); }
+    100% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.4)); }
 }
 
-/* ===== MENU ===== */
+/* ================= MENU ================= */
 .nav-menu {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 36px;
-    justify-self: center;
-    opacity: 0;
-    animation: menuFade 1s ease forwards;
-}
-
-@keyframes menuFade {
-    to { opacity: 1; }
+    gap: 22px;
 }
 
 .nav-menu a {
     color: #d4af37;
     text-decoration: none;
-    font-size: 15px;
-    letter-spacing: 1px;
+    font-size: 14px;
+    letter-spacing: 0.6px;
     position: relative;
+    line-height: 1;
 }
 
-/* underline */
 .nav-menu a::after {
     content: "";
     position: absolute;
+    bottom: -4px;
     left: 0;
-    bottom: -6px;
     width: 0;
     height: 2px;
     background: linear-gradient(90deg,#d4af37,#ffd700);
-    transition: width 0.3s ease;
+    transition: width 0.25s ease;
 }
 
 .nav-menu a:hover::after,
@@ -113,48 +111,45 @@ header * { position: relative; z-index: 2; }
     width: 100%;
 }
 
-.nav-menu a.active { color: #ffd700; }
-
-/* ===== CTA BUTTON ===== */
 .cta-btn {
-    padding: 10px 22px;
-    border-radius: 30px;
+    padding: 6px 14px;
+    border-radius: 18px;
     background: linear-gradient(90deg,#d4af37,#ffd700);
     color: #000 !important;
     font-weight: 600;
-    box-shadow: 0 0 15px rgba(212,175,55,0.6);
 }
 
-.cta-btn:hover {
-    box-shadow: 0 0 25px rgba(212,175,55,1);
-}
-
-/* ===== HAMBURGER ===== */
+/* ================= HAMBURGER ================= */
 .hamburger {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
     cursor: pointer;
 }
 
 .hamburger span {
-    width: 26px;
+    width: 22px;
     height: 2px;
     background: #d4af37;
-    margin: 4px 0;
+    margin: 2px 0;
 }
 
-/* ===== HERO TEXT ===== */
-.hero-content {
-    max-width: 1100px;
+/* ================= HERO TEXT (BELOW BANNER) ================= */
+.hero-text {
+    padding: 70px 20px 40px;
+    max-width: 1000px;
     margin: auto;
+    text-align: center;
 }
 
-.hero-content h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
+.hero-text h1 {
+    font-size: 34px;
+    margin-bottom: 15px;
 }
 
-/* ===== SECTIONS ===== */
+/* ================= SECTIONS ================= */
 section {
     padding: 80px 20px;
     max-width: 1200px;
@@ -167,7 +162,7 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* ===== GRID ===== */
+/* ================= GRID ================= */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -181,53 +176,50 @@ h2 {
     border-radius: 6px;
 }
 
-.box ul { padding-left: 18px; }
-
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 footer {
     border-top: 1px solid #d4af37;
-    padding: 28px;
+    padding: 26px;
     text-align: center;
 }
 
-/* ===== WHATSAPP ===== */
+/* ================= WHATSAPP ================= */
 .whatsapp-float {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 60px;
-    height: 60px;
+    bottom: 22px;
+    right: 22px;
+    width: 52px;
+    height: 52px;
     background: #25D366;
     border-radius: 50%;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(37,211,102,0.6);
     z-index: 999;
 }
 
 .whatsapp-icon {
-    width: 34px;
-    height: 34px;
-    margin-top: 13px;
+    width: 30px;
+    margin-top: 11px;
 }
 
-/* ===== MOBILE ===== */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+    header { min-height: 55vh; }
+
+    .hero-text h1 { font-size: 22px; }
+    .logo { max-width: 90px; }
+
     .nav-menu {
         display: none;
         position: absolute;
-        top: 70px;
-        right: 20px;
-        background: rgba(0,0,0,0.95);
-        padding: 18px 22px;
+        top: 50px;
+        right: 12px;
+        background: #000;
+        padding: 12px 14px;
         flex-direction: column;
-        border: 1px solid rgba(212,175,55,0.4);
-        border-radius: 6px;
+        border: 1px solid #d4af37;
     }
 
     .nav-menu.open { display: flex; }
     .hamburger { display: flex; }
-    .logo { max-width: 100px; }
-    .hero-content h1 { font-size: 28px; }
 }
 </style>
 </head>
@@ -236,7 +228,7 @@ footer {
 
 <header>
     <div class="banner-nav" id="bannerNav">
-        <a href="/"><img src="logo.png" class="logo" alt="Journey’s Soul"></a>
+        <a href="#"><img src="logo1.png" class="logo" alt="Journey’s Soul"></a>
 
         <nav class="nav-menu" id="navMenu">
             <a href="#services">Services</a>
@@ -250,17 +242,18 @@ footer {
             <span></span><span></span><span></span>
         </div>
     </div>
-
-    <div class="hero-content">
-        <h1>TRAVEL NOT JUST TO SEE THE WORLD… BUT TO FIND YOURSELF!!!</h1>
-        <p>
-            <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-            It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
-            Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-            The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
-        </p>
-    </div>
 </header>
+
+<!-- HEADLINE BELOW BANNER -->
+<div class="hero-text">
+    <h1>TRAVEL NOT JUST TO SEE THE WORLD… BUT TO FIND YOURSELF!!!</h1>
+    <p>
+        <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
+        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
+        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
+        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+    </p>
+</div>
 
 <section id="services">
 <h2>OUR SERVICES</h2>
@@ -269,128 +262,78 @@ footer {
 <div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal interests, style, and aspirations.</p></div>
 <div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support with private transfers and seamless assistance wherever you travel.</p></div>
 <div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries with precision, ensuring your trip reflects exactly what you desire.</p></div>
-<div class="box"><strong>Curated Collections</strong><p>A handpicked selection of exclusive resorts and luxury expedition cruises, carefully vetted for exceptional quality.</p></div>
+<div class="box"><strong>Curated Collections</strong><p>A handpicked selection of exclusive resorts and luxury expedition cruises.</p></div>
 </div>
 </section>
 
 <section id="india">
 <h2>🌍 Vacation Destinations in India</h2>
 <div class="grid">
-<div class="box"><strong>Jammu & Kashmir</strong><ul><li>Srinagar</li><li>Gulmarg</li><li>Pahalgam</li></ul></div>
-<div class="box"><strong>Uttar Pradesh</strong><ul><li>Ayodhya</li><li>Varanasi</li></ul></div>
-<div class="box"><strong>Kerala</strong><ul><li>Munnar</li><li>Alleppey</li><li>Wayanad</li><li>Kochi</li></ul></div>
-<div class="box"><strong>Rajasthan</strong><ul><li>Jaipur</li><li>Udaipur</li><li>Jaisalmer</li></ul></div>
-<div class="box"><strong>Ladakh</strong><ul><li>Leh</li><li>Nubra Valley</li><li>Pangong Lake</li></ul></div>
-<div class="box"><strong>Himachal Pradesh</strong><ul><li>Manali</li><li>Shimla</li><li>Spiti Valley</li><li>Dharamshala</li></ul></div>
-<div class="box"><strong>Andaman & Nicobar</strong><ul><li>Port Blair</li><li>Havelock Island</li><li>Neil Island</li></ul></div>
-<div class="box"><strong>Uttarakhand</strong><ul><li>Rishikesh</li><li>Mussoorie</li><li>Nainital</li><li>Auli</li></ul></div>
-<div class="box"><strong>Meghalaya</strong><ul><li>Shillong</li><li>Cherrapunji</li><li>Mawlynnong</li><li>Dawki</li></ul></div>
-<div class="box"><strong>Sikkim</strong><ul><li>Gangtok</li><li>Tsomgo Lake</li><li>Lachung</li><li>Yumthang Valley</li></ul></div>
+<div class="box">Jammu & Kashmir – Srinagar, Gulmarg, Pahalgam</div>
+<div class="box">Uttar Pradesh – Ayodhya, Varanasi</div>
+<div class="box">Kerala – Munnar, Alleppey, Wayanad, Kochi</div>
+<div class="box">Rajasthan – Jaipur, Udaipur, Jaisalmer</div>
+<div class="box">Ladakh – Leh, Nubra Valley, Pangong Lake</div>
+<div class="box">Himachal Pradesh – Manali, Shimla, Spiti Valley, Dharamshala</div>
+<div class="box">Andaman & Nicobar – Port Blair, Havelock, Neil Island</div>
+<div class="box">Uttarakhand – Rishikesh, Mussoorie, Nainital, Auli</div>
+<div class="box">Meghalaya – Shillong, Cherrapunji, Mawlynnong, Dawki</div>
+<div class="box">Sikkim – Gangtok, Tsomgo Lake, Lachung, Yumthang Valley</div>
 </div>
 </section>
 
 <section id="international">
 <h2>🌍 International Travel Destinations</h2>
 <div class="grid">
-<div class="box">France 🇫🇷</div>
-<div class="box">Indonesia 🇮🇩</div>
-<div class="box">United Arab Emirates 🇦🇪</div>
-<div class="box">Switzerland 🇨🇭</div>
-<div class="box">Maldives 🇲🇻</div>
-<div class="box">Italy 🇮🇹</div>
-<div class="box">Thailand 🇹🇭</div>
-<div class="box">Japan 🇯🇵</div>
-<div class="box">Australia 🇦🇺</div>
-<div class="box">Greece 🇬🇷</div>
-<div class="box">New Zealand 🇳🇿</div>
-<div class="box">South Africa 🇿🇦</div>
-<div class="box">Spain 🇪🇸</div>
-<div class="box">Mauritius 🇲🇺</div>
-<div class="box">Sri Lanka 🇱🇰</div>
+<div class="box">France 🇫🇷</div><div class="box">Indonesia 🇮🇩</div><div class="box">United Arab Emirates 🇦🇪</div>
+<div class="box">Switzerland 🇨🇭</div><div class="box">Maldives 🇲🇻</div><div class="box">Italy 🇮🇹</div>
+<div class="box">Thailand 🇹🇭</div><div class="box">Japan 🇯🇵</div><div class="box">Australia 🇦🇺</div>
+<div class="box">Greece 🇬🇷</div><div class="box">New Zealand 🇳🇿</div><div class="box">South Africa 🇿🇦</div>
+<div class="box">Spain 🇪🇸</div><div class="box">Mauritius 🇲🇺</div><div class="box">Sri Lanka 🇱🇰</div>
 </div>
 </section>
 
 <section id="contact">
-    <h2>Contact Us</h2>
-
-    <p style="
-        text-align:center;
-        font-size:16px;
-        line-height:2;
-        max-width:1000px;
-        margin:0 auto;
-    ">
-        <strong>Email:</strong>
-        <a href="mailto:journeys.soul.js@gmail.com" style="color:#d4af37; text-decoration:none; white-space:nowrap;">
-            journeys.soul.js@gmail.com
-        </a>
-        &nbsp; | &nbsp;
-
-        <strong>Phone:</strong>
-        <a href="tel:+919379173969" style="color:#d4af37; text-decoration:none; white-space:nowrap;">
-            +91 9379173969
-        </a>
-        /
-        <a href="tel:+919980874534" style="color:#d4af37; text-decoration:none; white-space:nowrap;">
-            9980874534
-        </a>
-        &nbsp; | &nbsp;
-
-        <strong>Facebook:</strong>
-        <a href="https://www.facebook.com/JassieSudharshan" target="_blank"
-           style="color:#d4af37; text-decoration:none;">
-            Jassie Sudharshan
-        </a>
-        &nbsp; | &nbsp;
-
-        <span style="white-space:nowrap;"><strong>Instagram:</strong>
-			<a href="https://www.instagram.com/journeysoulbyjs" target="_blank"
-			   style="color:#d4af37; text-decoration:none;">
-				Journey’s Soul by JS
-			</a>
-		</span>
-
-    </p>
-
-    <p style="
-        text-align:center;
-        margin-top:25px;
-        font-size:15px;
-        letter-spacing:0.5px;
-    ">
-        Let’s begin your journey — travel with soul.
-    </p>
+<h2>Contact Us</h2>
+<p style="text-align:center; line-height:2;">
+<strong>Email:</strong> journeys.soul.js@gmail.com |
+<strong>Phone:</strong> +91 9379173969 / 9980874534 |
+<strong>Facebook:</strong> Jassie Sudharshan |
+<strong>Instagram:</strong> <span style="white-space:nowrap;">Journey’s Soul by JS</span>
+</p>
 </section>
-
-
 
 <footer>
 © 2026 Journey’s Soul. All Rights Reserved.
 </footer>
 
-<a href="https://wa.me/919379173969" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
 <img src="whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
 </a>
 
 <script>
-const hamburger=document.getElementById("hamburger");
-const navMenu=document.getElementById("navMenu");
-const bannerNav=document.getElementById("bannerNav");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+const bannerNav = document.getElementById("bannerNav");
 
-hamburger.onclick=()=>navMenu.classList.toggle("open");
+hamburger.onclick = () => navMenu.classList.toggle("open");
+
+document.querySelectorAll("#navMenu a").forEach(link=>{
+    link.onclick = () => navMenu.classList.remove("open");
+});
 
 window.addEventListener("scroll",()=>{
-const scrolled=window.scrollY>80;
-bannerNav.classList.toggle("sticky",scrolled);
-bannerNav.classList.toggle("centered",scrolled);
+    const s = window.scrollY > 80;
+    bannerNav.classList.toggle("sticky", s);
+    bannerNav.classList.toggle("hide-logo", s);
 
-document.querySelectorAll("section").forEach(sec=>{
-const link=document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
-if(window.scrollY>=sec.offsetTop-200){
-document.querySelectorAll(".nav-menu a").forEach(a=>a.classList.remove("active"));
-if(link) link.classList.add("active");
-}
-});
+    document.querySelectorAll("section").forEach(sec=>{
+        const link = document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
+        if(window.scrollY >= sec.offsetTop - 200){
+            document.querySelectorAll(".nav-menu a").forEach(a=>a.classList.remove("active"));
+            if(link) link.classList.add("active");
+        }
+    });
 });
 </script>
 
