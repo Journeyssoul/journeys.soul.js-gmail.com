@@ -20,7 +20,7 @@ body {
 /* ================= HEADER / BANNER ================= */
 header {
     position: relative;
-    background: url('banner.jpg') center / cover no-repeat;
+    background: url('images/banner.jpg') center / cover no-repeat;
     min-height: 65vh;
 }
 
@@ -56,11 +56,9 @@ header * { position: relative; z-index: 2; }
     border-bottom: 1px solid rgba(212,175,55,0.4);
 }
 
-/* Hide logo safely without breaking grid */
 .banner-nav.hide-logo .logo {
     opacity: 0;
     width: 0;
-    margin: 0;
     overflow: hidden;
     pointer-events: none;
 }
@@ -92,7 +90,6 @@ header * { position: relative; z-index: 2; }
     font-size: 14px;
     letter-spacing: 0.6px;
     position: relative;
-    line-height: 1;
 }
 
 .nav-menu a::after {
@@ -136,7 +133,7 @@ header * { position: relative; z-index: 2; }
     margin: 2px 0;
 }
 
-/* ================= HERO TEXT (BELOW BANNER) ================= */
+/* ================= HERO TEXT ================= */
 .hero-text {
     padding: 70px 20px 40px;
     max-width: 1000px;
@@ -152,7 +149,7 @@ header * { position: relative; z-index: 2; }
 /* ================= SECTIONS ================= */
 section {
     padding: 80px 20px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
 }
 
@@ -162,10 +159,10 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* ================= GRID ================= */
+/* ================= SERVICES GRID ================= */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 24px;
 }
 
@@ -175,6 +172,59 @@ h2 {
     padding: 24px;
     border-radius: 6px;
 }
+
+/* ================= INDIA IMAGE GRID ================= */
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    justify-items: center;
+}
+
+/* ===== 200x200 IMAGE BOX ===== */
+.img-box {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid #d4af37;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Hover animation WITHOUT layout shift */
+.img-box:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(212,175,55,0.8);
+    z-index: 2;
+}
+
+/* Label overlay */
+.img-box::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #ffd700;
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Individual destination images */
+.jk { background-image: url('images/jammukashmir.png'); }
+.up { background-image: url('images/uttarpradesh.png'); }
+.kerala { background-image: url('images/kerala.png'); }
+.rajasthan { background-image: url('images/rajasthan.png'); }
+.ladakh { background-image: url('images/ladakh.png'); }
+.uttarakhand { background-image: url('images/uttarakhand.png'); }
+.meghalaya { background-image: url('images/meghalaya.png'); }
+.sikkim { background-image: url('images/sikkim.png'); }
+.andaman { background-image: url('images/andaman.png'); }
 
 /* ================= FOOTER ================= */
 footer {
@@ -187,21 +237,19 @@ footer {
 .whatsapp-float {
     position: fixed;
     bottom: 22px;
-    right: 22px;
-    width: 52px;
-    height: 52px;
+    right: 1px;
+    width: 60px;
+    height: 50px;
     z-index: 999;
 }
 
 .whatsapp-icon {
-    width: 30px;
+    width: 50px;
     margin-top: 11px;
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-    header { min-height: 55vh; }
-
     .hero-text h1 { font-size: 22px; }
     .logo { max-width: 90px; }
 
@@ -218,6 +266,11 @@ footer {
 
     .nav-menu.open { display: flex; }
     .hamburger { display: flex; }
+
+    .img-box {
+        width: 160px;
+        height: 160px;
+    }
 }
 </style>
 </head>
@@ -225,33 +278,31 @@ footer {
 <body>
 
 <header>
-    <div class="banner-nav" id="bannerNav">
-        <a href="#"><img src="logo1.png" class="logo" alt="Journey’s Soul"></a>
+<div class="banner-nav" id="bannerNav">
+    <a href="#"><img src="images/logo1.png" class="logo" alt="Journey’s Soul"></a>
 
-        <nav class="nav-menu" id="navMenu">
-            <a href="#services">Services</a>
-            <a href="#india">India</a>
-            <a href="#international">International</a>
-            <a href="#contact">Contact</a>
-            <a href="#contact" class="cta-btn">Plan Your Journey</a>
-        </nav>
+    <nav class="nav-menu" id="navMenu">
+        <a href="#services">Services</a>
+        <a href="#india">India</a>
+        <a href="#international">International</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="cta-btn">Plan Your Journey</a>
+    </nav>
 
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
     </div>
+</div>
 </header>
 
-<!-- HEADLINE BELOW BANNER -->
 <div class="hero-text">
-    <h1>
-	<p>TRAVEL NOT JUST TO SEE THE WORLD… <br> BUT TO FIND YOURSELF!!!</h1>
-    <p>
-        <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
-        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
-    </p>
+<h1>TRAVEL NOT JUST TO SEE THE WORLD… BUT TO FIND YOURSELF!!!</h1>
+<p>
+<strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
+It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
+Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
+The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+</p>
 </div>
 
 <section id="services">
@@ -267,28 +318,37 @@ footer {
 
 <section id="india">
 <h2>🌍 Vacation Destinations in India</h2>
-<div class="grid">
-<div class="box">Jammu & Kashmir – Srinagar, Gulmarg, Pahalgam</div>
-<div class="box">Uttar Pradesh – Ayodhya, Varanasi</div>
-<div class="box">Kerala – Munnar, Alleppey, Wayanad, Kochi</div>
-<div class="box">Rajasthan – Jaipur, Udaipur, Jaisalmer</div>
-<div class="box">Ladakh – Leh, Nubra Valley, Pangong Lake</div>
-<div class="box">Himachal Pradesh – Manali, Shimla, Spiti Valley, Dharamshala</div>
-<div class="box">Andaman & Nicobar – Port Blair, Havelock, Neil Island</div>
-<div class="box">Uttarakhand – Rishikesh, Mussoorie, Nainital, Auli</div>
-<div class="box">Meghalaya – Shillong, Cherrapunji, Mawlynnong, Dawki</div>
-<div class="box">Sikkim – Gangtok, Tsomgo Lake, Lachung, Yumthang Valley</div>
+<div class="img-grid">
+<div class="img-box jk" data-title="Jammu & Kashmir"></div>
+<div class="img-box up" data-title="Uttar Pradesh"></div>
+<div class="img-box kerala" data-title="Kerala"></div>
+<div class="img-box rajasthan" data-title="Rajasthan"></div>
+<div class="img-box ladakh" data-title="Ladakh"></div>
+<div class="img-box uttarakhand" data-title="Uttarakhand"></div>
+<div class="img-box meghalaya" data-title="Meghalaya"></div>
+<div class="img-box sikkim" data-title="Sikkim"></div>
+<div class="img-box andaman" data-title="Andaman & Nicobar"></div>
 </div>
 </section>
 
 <section id="international">
 <h2>🌍 International Travel Destinations</h2>
 <div class="grid">
-<div class="box">France 🇫🇷</div><div class="box">Indonesia 🇮🇩</div><div class="box">United Arab Emirates 🇦🇪</div>
-<div class="box">Switzerland 🇨🇭</div><div class="box">Maldives 🇲🇻</div><div class="box">Italy 🇮🇹</div>
-<div class="box">Thailand 🇹🇭</div><div class="box">Japan 🇯🇵</div><div class="box">Australia 🇦🇺</div>
-<div class="box">Greece 🇬🇷</div><div class="box">New Zealand 🇳🇿</div><div class="box">South Africa 🇿🇦</div>
-<div class="box">Spain 🇪🇸</div><div class="box">Mauritius 🇲🇺</div><div class="box">Sri Lanka 🇱🇰</div>
+<div class="box">France 🇫🇷</div>
+<div class="box">Indonesia 🇮🇩</div>
+<div class="box">United Arab Emirates 🇦🇪</div>
+<div class="box">Switzerland 🇨🇭</div>
+<div class="box">Maldives 🇲🇻</div>
+<div class="box">Italy 🇮🇹</div>
+<div class="box">Thailand 🇹🇭</div>
+<div class="box">Japan 🇯🇵</div>
+<div class="box">Australia 🇦🇺</div>
+<div class="box">Greece 🇬🇷</div>
+<div class="box">New Zealand 🇳🇿</div>
+<div class="box">South Africa 🇿🇦</div>
+<div class="box">Spain 🇪🇸</div>
+<div class="box">Mauritius 🇲🇺</div>
+<div class="box">Sri Lanka 🇱🇰</div>
 </div>
 </section>
 
@@ -306,8 +366,8 @@ footer {
 © 2026 Journey’s Soul. All Rights Reserved.
 </footer>
 
-<a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
-<img src="Whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
+<a href="https://wa.me/919379173969" class="whatsapp-float" target="_blank">
+<img src="images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
 </a>
 
 <script>
@@ -317,20 +377,20 @@ const bannerNav = document.getElementById("bannerNav");
 
 hamburger.onclick = () => navMenu.classList.toggle("open");
 
-document.querySelectorAll("#navMenu a").forEach(link=>{
+document.querySelectorAll("#navMenu a").forEach(link => {
     link.onclick = () => navMenu.classList.remove("open");
 });
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
     const s = window.scrollY > 80;
     bannerNav.classList.toggle("sticky", s);
     bannerNav.classList.toggle("hide-logo", s);
 
-    document.querySelectorAll("section").forEach(sec=>{
+    document.querySelectorAll("section").forEach(sec => {
         const link = document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
-        if(window.scrollY >= sec.offsetTop - 200){
-            document.querySelectorAll(".nav-menu a").forEach(a=>a.classList.remove("active"));
-            if(link) link.classList.add("active");
+        if (window.scrollY >= sec.offsetTop - 200) {
+            document.querySelectorAll(".nav-menu a").forEach(a => a.classList.remove("active"));
+            if (link) link.classList.add("active");
         }
     });
 });
