@@ -28,17 +28,19 @@ header::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.15);
+    background: rgba(0,0,0,0.35);
     z-index: 1;
 }
 
-header * { position: relative; z-index: 2; }
+header * {
+    position: relative;
+    z-index: 2;
+}
 
 /* ================= NAV BAR ================= */
 .banner-nav {
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
     height: 50px;
     padding: 0 20px;
@@ -46,7 +48,6 @@ header * { position: relative; z-index: 2; }
     grid-template-columns: auto 1fr auto;
     align-items: center;
     z-index: 1000;
-    transition: background 0.3s ease;
 }
 
 .banner-nav.sticky {
@@ -72,7 +73,6 @@ header * { position: relative; z-index: 2; }
 .nav-menu {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 22px;
 }
 
@@ -80,7 +80,6 @@ header * { position: relative; z-index: 2; }
     color: #d4af37;
     text-decoration: none;
     font-size: 14px;
-    letter-spacing: 0.6px;
     position: relative;
 }
 
@@ -95,17 +94,8 @@ header * { position: relative; z-index: 2; }
     transition: width 0.25s ease;
 }
 
-.nav-menu a:hover::after,
-.nav-menu a.active::after {
+.nav-menu a:hover::after {
     width: 100%;
-}
-
-.cta-btn {
-    padding: 6px 14px;
-    border-radius: 18px;
-    background: linear-gradient(90deg,#d4af37,#ffd700);
-    color: #000 !important;
-    font-weight: 600;
 }
 
 /* ================= HAMBURGER ================= */
@@ -122,9 +112,9 @@ header * { position: relative; z-index: 2; }
     margin: 2px 0;
 }
 
-/* ================= HERO TEXT ================= */
+/* ================= HERO TEXT (BELOW BANNER) ================= */
 .hero-text {
-    padding: 70px 20px 40px;
+    padding: 70px 20px 80px;
     max-width: 1000px;
     margin: auto;
     text-align: center;
@@ -132,7 +122,7 @@ header * { position: relative; z-index: 2; }
 
 .hero-text h1 {
     font-size: 34px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 /* ================= SECTIONS ================= */
@@ -148,7 +138,7 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* ================= SERVICES GRID ================= */
+/* ================= SERVICES ================= */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -160,9 +150,15 @@ h2 {
     border: 1px solid #d4af37;
     padding: 24px;
     border-radius: 6px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* ================= INDIA IMAGE GRID ================= */
+.box:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 0 28px rgba(212,175,55,0.75);
+}
+
+/* ================= IMAGE GRID (INDIA + INTERNATIONAL) ================= */
 .img-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -179,6 +175,13 @@ h2 {
     background-position: center;
     position: relative;
     overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.img-box:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(212,175,55,0.8);
+    z-index: 2;
 }
 
 .img-box::after {
@@ -194,32 +197,6 @@ h2 {
     text-align: center;
 }
 
-/* Destination images */
-.jk { background-image: url('./images/jammukashmir.png'); }
-.up { background-image: url('./images/uttarpradesh.png'); }
-.kerala { background-image: url('./images/kerala.png'); }
-.rajasthan { background-image: url('./images/rajasthan.png'); }
-.ladakh { background-image: url('./images/ladakh.png'); }
-.uttarakhand { background-image: url('./images/uttarakhand.png'); }
-.meghalaya { background-image: url('./images/meghalaya.png'); }
-.sikkim { background-image: url('./images/sikkim.png'); }
-.andaman { background-image: url('./images/andaman.png'); }
-
-/* ================= INTERNATIONAL FLAGS ================= */
-.country {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.flag {
-    width: 28px;
-    height: 18px;
-    border: 1px solid #d4af37;
-    border-radius: 3px;
-    flex-shrink: 0;
-}
-
 /* ================= FOOTER ================= */
 footer {
     border-top: 1px solid #d4af37;
@@ -231,24 +208,18 @@ footer {
 .whatsapp-float {
     position: fixed;
     bottom: 22px;
-    right: 1px;
-    width: 60px;
-    height: 50px;
+    right: 10px;
     z-index: 999;
 }
 
 .whatsapp-icon {
     width: 50px;
-    margin-top: 11px;
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 1024px) {
-    header { min-height: 45vh; }
-}
-
 @media (max-width: 768px) {
-    header { min-height: 35vh; }
+    header { min-height: 30vh; }
+
     .hero-text h1 { font-size: 22px; }
 
     .nav-menu {
@@ -276,88 +247,95 @@ footer {
 <body>
 
 <header>
-<div class="banner-nav" id="bannerNav">
-    <a href="#"><img src="./images/logo.png" class="logo" alt="Journey’s Soul"></a>
+    <div class="banner-nav" id="bannerNav">
+        <a href="#"><img src="./images/logo.png" class="logo" alt="Journey’s Soul"></a>
 
-    <nav class="nav-menu" id="navMenu">
-        <a href="#services">Services</a>
-        <a href="#india">India</a>
-        <a href="#international">International</a>
-        <a href="#contact">Contact</a>
-    </nav>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#services">Services</a>
+            <a href="#india">India</a>
+            <a href="#international">International</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-    <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
     </div>
-</div>
 </header>
 
-<div class="hero-text">
-<h1>TRAVEL NOT JUST TO SEE THE WORLD…<br> BUT TO FIND YOURSELF!!!</h1>
-<p>
-<strong>“Journey’s Soul”</strong> means going beyond destinations—it's about transformation, connection,
-and the memories that reshape your perspective on life.
-</p>
-</div>
+<section class="hero-text">
+    <h1>TRAVEL NOT JUST TO SEE THE WORLD…<br>BUT TO FIND YOURSELF!!!</h1>
+    <p>
+        <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
+        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
+        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
+        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+    </p>
+</section>
 
 <section id="services">
-<h2>OUR SERVICES</h2>
-<div class="grid">
-<div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey.</p></div>
-<div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around you.</p></div>
-<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 support wherever you go.</p></div>
-<div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries.</p></div>
-<div class="box"><strong>Curated Collections</strong><p>Exclusive resorts and luxury cruises.</p></div>
-</div>
+    <h2>OUR SERVICES</h2>
+    <div class="grid">
+        <div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey, from flights and accommodations to tours and experiences.</p></div>
+        <div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal interests, style, and aspirations.</p></div>
+        <div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support with private transfers and seamless assistance wherever you travel.</p></div>
+        <div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries with precision, ensuring your trip reflects exactly what you desire.</p></div>
+        <div class="box"><strong>Curated Collections</strong><p>A handpicked selection of exclusive resorts and luxury expedition cruises, carefully vetted for exceptional quality.</p></div>
+    </div>
 </section>
 
 <section id="india">
-<h2>🌍 Vacation Destinations in India</h2>
-<div class="img-grid">
-<div class="img-box jk" data-title="Jammu & Kashmir"></div>
-<div class="img-box up" data-title="Uttar Pradesh"></div>
-<div class="img-box kerala" data-title="Kerala"></div>
-<div class="img-box rajasthan" data-title="Rajasthan"></div>
-<div class="img-box ladakh" data-title="Ladakh"></div>
-<div class="img-box uttarakhand" data-title="Uttarakhand"></div>
-<div class="img-box meghalaya" data-title="Meghalaya"></div>
-<div class="img-box sikkim" data-title="Sikkim"></div>
-<div class="img-box andaman" data-title="Andaman & Nicobar"></div>
-</div>
+    <h2>🌍 Vacation Destinations in India</h2>
+    <div class="img-grid">
+        <div class="img-box" style="background-image:url('./images/jammukashmir.png')" data-title="Jammu & Kashmir"></div>
+        <div class="img-box" style="background-image:url('./images/uttarpradesh.png')" data-title="Uttar Pradesh"></div>
+        <div class="img-box" style="background-image:url('./images/kerala.png')" data-title="Kerala"></div>
+        <div class="img-box" style="background-image:url('./images/rajasthan.png')" data-title="Rajasthan"></div>
+        <div class="img-box" style="background-image:url('./images/ladakh.png')" data-title="Ladakh"></div>
+        <div class="img-box" style="background-image:url('./images/uttarakhand.png')" data-title="Uttarakhand"></div>
+        <div class="img-box" style="background-image:url('./images/meghalaya.png')" data-title="Meghalaya"></div>
+        <div class="img-box" style="background-image:url('./images/sikkim.png')" data-title="Sikkim"></div>
+        <div class="img-box" style="background-image:url('./images/andaman.png')" data-title="Andaman & Nicobar"></div>
+    </div>
 </section>
 
 <section id="international">
-<h2>🌍 International Travel Destinations</h2>
-<div class="grid">
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>France</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="1" fill="#fff"/><rect y="1" width="3" height="1" fill="#E70011"/></svg>Indonesia</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="0.6" height="2" fill="#CE1126"/><rect x="0.6" width="2.4" height="2" fill="#00732F"/><rect x="0.6" y="0.75" width="2.4" height="0.5" fill="#fff"/></svg>United Arab Emirates</div>
-<div class="box country"><svg class="flag" viewBox="0 0 8 8"><rect width="8" height="8" fill="#D52B1E"/><rect x="3" width="2" height="8" fill="#fff"/><rect y="3" width="8" height="2" fill="#fff"/></svg>Switzerland</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#007E3A"/><circle cx="1.5" cy="1" r="0.6" fill="#fff"/></svg>Maldives</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="0.66" fill="#009246"/><rect y="0.66" width="3" height="0.66" fill="#fff"/><rect y="1.32" width="3" height="0.68" fill="#CE2B37"/></svg>Italy</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#00247D"/></svg>Australia</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#0D5EAF"/><rect y="1" width="3" height="1" fill="#fff"/></svg>Greece</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect y="0.66" width="3" height="0.66" fill="#F1BF00"/></svg>Spain</div>
-<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#FF9933"/><rect y="0.66" width="3" height="0.66" fill="#fff"/><rect y="1.32" width="3" height="0.68" fill="#138808"/></svg>Sri Lanka</div>
-</div>
+    <h2>🌍 International Travel Destinations</h2>
+    <div class="img-grid">
+        <div class="img-box" style="background-image:url('./images/france.png')" data-title="France"></div>
+        <div class="img-box" style="background-image:url('./images/indonesia.png')" data-title="Indonesia"></div>
+        <div class="img-box" style="background-image:url('./images/uae.png')" data-title="United Arab Emirates"></div>
+        <div class="img-box" style="background-image:url('./images/switzerland.png')" data-title="Switzerland"></div>
+        <div class="img-box" style="background-image:url('./images/maldives.png')" data-title="Maldives"></div>
+        <div class="img-box" style="background-image:url('./images/italy.png')" data-title="Italy"></div>
+		<div class="img-box" style="background-image:url('./images/thailand.png')" data-title="Thailand"></div>
+		<div class="img-box" style="background-image:url('./images/japan.png')" data-title="Japan"></div>
+        <div class="img-box" style="background-image:url('./images/australia.png')" data-title="Australia"></div>
+        <div class="img-box" style="background-image:url('./images/greece.png')" data-title="Greece"></div>
+		<div class="img-box" style="background-image:url('./images/newzealand.png')" data-title="New Zealand"></div>
+		<div class="img-box" style="background-image:url('./images/southafrica.png')" data-title="South Africa"></div>
+        <div class="img-box" style="background-image:url('./images/spain.png')" data-title="Spain"></div>
+		<div class="img-box" style="background-image:url('./images/mauritius.png')" data-title="Mauritius"></div>
+        <div class="img-box" style="background-image:url('./images/srilanka.png')" data-title="Sri Lanka"></div>
+    </div>
 </section>
 
 <section id="contact">
-<h2>Contact Us</h2>
-<p style="text-align:center; line-height:2;">
-<strong>Email:</strong> journeys.soul.js@gmail.com |
-<strong>Phone:</strong> +91 9379173969 / 9980874534 |
-<strong>Facebook:</strong> Jassie Sudharshan |
-<strong>Instagram:</strong> Journey’s Soul by JS
-</p>
+    <h2>Contact Us</h2>
+    <p style="text-align:center; line-height:2;">
+        <strong>Email:</strong> journeys.soul.js@gmail.com |
+        <strong>Phone:</strong> +91 9379173969 / 9980874534 |
+        <strong>Facebook:</strong> Jassie Sudharshan |
+        <strong>Instagram:</strong> Journey’s Soul by JS
+    </p>
 </section>
 
 <footer>
-© 2026 Journey’s Soul. All Rights Reserved.
+    © 2026 Journey’s Soul. All Rights Reserved.
 </footer>
 
 <a href="https://wa.me/919379173969" class="whatsapp-float" target="_blank">
-<img src="./images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
+    <img src="./images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
 </a>
 
 <script>
@@ -372,16 +350,7 @@ document.querySelectorAll("#navMenu a").forEach(link => {
 });
 
 window.addEventListener("scroll", () => {
-    const s = window.scrollY > 80;
-    bannerNav.classList.toggle("sticky", s);
-
-    document.querySelectorAll("section").forEach(sec => {
-        const link = document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
-        if (window.scrollY >= sec.offsetTop - 200) {
-            document.querySelectorAll(".nav-menu a").forEach(a => a.classList.remove("active"));
-            if (link) link.classList.add("active");
-        }
-    });
+    bannerNav.classList.toggle("sticky", window.scrollY > 80);
 });
 </script>
 
