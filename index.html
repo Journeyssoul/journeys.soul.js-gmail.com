@@ -34,7 +34,7 @@ header::before {
 
 header * { position: relative; z-index: 2; }
 
-/* ================= TOP NAV BAR ================= */
+/* ================= NAV BAR ================= */
 .banner-nav {
     position: absolute;
     top: 0;
@@ -60,9 +60,6 @@ header * { position: relative; z-index: 2; }
 .logo {
     max-width: 105px;
     animation: goldGlow 3s infinite ease-in-out;
-    transition: opacity 0.3s ease, width 0.3s ease;
-    position: relative;
-    z-index: 1001;
 }
 
 @keyframes goldGlow {
@@ -115,9 +112,6 @@ header * { position: relative; z-index: 2; }
 .hamburger {
     display: none;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100%;
     cursor: pointer;
 }
 
@@ -185,13 +179,6 @@ h2 {
     background-position: center;
     position: relative;
     overflow: hidden;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.img-box:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 30px rgba(212,175,55,0.8);
-    z-index: 2;
 }
 
 .img-box::after {
@@ -218,6 +205,21 @@ h2 {
 .sikkim { background-image: url('./images/sikkim.png'); }
 .andaman { background-image: url('./images/andaman.png'); }
 
+/* ================= INTERNATIONAL FLAGS ================= */
+.country {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.flag {
+    width: 28px;
+    height: 18px;
+    border: 1px solid #d4af37;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
 /* ================= FOOTER ================= */
 footer {
     border-top: 1px solid #d4af37;
@@ -240,10 +242,14 @@ footer {
     margin-top: 11px;
 }
 
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+    header { min-height: 45vh; }
+}
+
 @media (max-width: 768px) {
+    header { min-height: 35vh; }
     .hero-text h1 { font-size: 22px; }
-    .logo { max-width: 90px; }
 
     .nav-menu {
         display: none;
@@ -251,7 +257,7 @@ footer {
         top: 50px;
         right: 12px;
         background: #000;
-        padding: 12px 14px;
+        padding: 12px;
         flex-direction: column;
         border: 1px solid #d4af37;
     }
@@ -278,6 +284,7 @@ footer {
         <a href="#india">India</a>
         <a href="#international">International</a>
         <a href="#contact">Contact</a>
+        <a href="#contact" class="cta-btn">Plan Your Journey</a>
     </nav>
 
     <div class="hamburger" id="hamburger">
@@ -289,10 +296,8 @@ footer {
 <div class="hero-text">
 <h1>TRAVEL NOT JUST TO SEE THE WORLD…<br> BUT TO FIND YOURSELF!!!</h1>
 <p>
-<strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
-Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+<strong>“Journey’s Soul”</strong> means going beyond destinations—it's about transformation, connection,
+and the memories that reshape your perspective on life.
 </p>
 </div>
 
@@ -301,9 +306,9 @@ The ‘soul’ of a journey is the transformation it brings, the stories it leav
 <div class="grid">
 <div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey.</p></div>
 <div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around you.</p></div>
-<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support worldwide.</p></div>
-<div class="box"><strong>Bespoke Journey Design</strong><p>Precision-crafted itineraries.</p></div>
-<div class="box"><strong>Curated Collections</strong><p>Exclusive luxury resorts and cruises.</p></div>
+<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 support wherever you go.</p></div>
+<div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries.</p></div>
+<div class="box"><strong>Curated Collections</strong><p>Exclusive resorts and luxury cruises.</p></div>
 </div>
 </section>
 
@@ -325,21 +330,16 @@ The ‘soul’ of a journey is the transformation it brings, the stories it leav
 <section id="international">
 <h2>🌍 International Travel Destinations</h2>
 <div class="grid">
-<div class="box">France 🇫🇷</div>
-<div class="box">Indonesia 🇮🇩</div>
-<div class="box">United Arab Emirates 🇦🇪</div>
-<div class="box">Switzerland 🇨🇭</div>
-<div class="box">Maldives 🇲🇻</div>
-<div class="box">Italy 🇮🇹</div>
-<div class="box">Thailand 🇹🇭</div>
-<div class="box">Japan 🇯🇵</div>
-<div class="box">Australia 🇦🇺</div>
-<div class="box">Greece 🇬🇷</div>
-<div class="box">New Zealand 🇳🇿</div>
-<div class="box">South Africa 🇿🇦</div>
-<div class="box">Spain 🇪🇸</div>
-<div class="box">Mauritius 🇲🇺</div>
-<div class="box">Sri Lanka 🇱🇰</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>France</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="1" fill="#fff"/><rect y="1" width="3" height="1" fill="#E70011"/></svg>Indonesia</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="0.6" height="2" fill="#CE1126"/><rect x="0.6" width="2.4" height="2" fill="#00732F"/><rect x="0.6" y="0.75" width="2.4" height="0.5" fill="#fff"/></svg>United Arab Emirates</div>
+<div class="box country"><svg class="flag" viewBox="0 0 8 8"><rect width="8" height="8" fill="#D52B1E"/><rect x="3" width="2" height="8" fill="#fff"/><rect y="3" width="8" height="2" fill="#fff"/></svg>Switzerland</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#007E3A"/><circle cx="1.5" cy="1" r="0.6" fill="#fff"/></svg>Maldives</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="0.66" fill="#009246"/><rect y="0.66" width="3" height="0.66" fill="#fff"/><rect y="1.32" width="3" height="0.68" fill="#CE2B37"/></svg>Italy</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#00247D"/></svg>Australia</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#0D5EAF"/><rect y="1" width="3" height="1" fill="#fff"/></svg>Greece</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect y="0.66" width="3" height="0.66" fill="#F1BF00"/></svg>Spain</div>
+<div class="box country"><svg class="flag" viewBox="0 0 3 2"><rect width="3" height="2" fill="#FF9933"/><rect y="0.66" width="3" height="0.66" fill="#fff"/><rect y="1.32" width="3" height="0.68" fill="#138808"/></svg>Sri Lanka</div>
 </div>
 </section>
 
