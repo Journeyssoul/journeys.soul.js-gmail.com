@@ -3,142 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journey’s Soul | Transformative Travel Experiences</title>
+<title>Journey’s Soul | Transformative Travel</title>
 
 <style>
+/* ===== GLOBAL ===== */
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #000;
+    background: #000;
     color: #d4af37;
+    line-height: 1.7;
 }
 
-/* HERO */
+/* ===== HEADER / BANNER ===== */
 header {
     position: relative;
-    background: url('banner.png') center center / cover no-repeat;
-    color: #d4af37;
-    padding: 250px 20px;
+    background: url('banner.jpg') center / cover no-repeat;
+    padding: 220px 20px 160px;
     text-align: center;
 }
 
-/* Dark overlay for readability */
 header::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0,0,0,0.65);
     z-index: 1;
 }
 
-/* Ensure content stays above overlay */
-header * {
-    position: relative;
-    z-index: 2;
-}
+header * { position: relative; z-index: 2; }
 
-/* LOGO WITH GLOW */
-.logo {
+/* ===== NAV ON BANNER ===== */
+.banner-nav {
     position: absolute;
-    top: 25px;
-    left: 1700px;
-    max-width: 140px;
-    animation: goldGlow 3s infinite ease-in-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
     z-index: 3;
+    transition: all 0.4s ease;
 }
 
+.banner-nav.sticky {
+    position: fixed;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(212,175,55,0.4);
+}
+
+.banner-nav.centered {
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+/* ===== LOGO ===== */
+.logo {
+    max-width: 120px;
+    animation: goldGlow 3s infinite ease-in-out;
+}
 
 @keyframes goldGlow {
-    0%   { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
-    50%  { filter: drop-shadow(0 0 18px rgba(212,175,55,0.9)); }
+    0% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
+    50% { filter: drop-shadow(0 0 18px rgba(212,175,55,0.9)); }
     100% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.4)); }
 }
 
-header h1 {
-    font-size: 34px;
-    margin-bottom: 20px;
+/* ===== MENU ===== */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    justify-self: center;
+    opacity: 0;
+    animation: menuFade 1s ease forwards;
+}
+
+@keyframes menuFade {
+    to { opacity: 1; }
+}
+
+.nav-menu a {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 15px;
     letter-spacing: 1px;
+    position: relative;
 }
 
-header p {
-    font-size: 18px;
-    max-width: 950px;
-    margin: auto;
+/* underline */
+.nav-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,#d4af37,#ffd700);
+    transition: width 0.3s ease;
 }
 
-/* SECTIONS */
-section {
-    padding: 40px 20px;
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+.nav-menu a.active { color: #ffd700; }
+
+/* ===== CTA BUTTON ===== */
+.cta-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: linear-gradient(90deg,#d4af37,#ffd700);
+    color: #000 !important;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(212,175,55,0.6);
+}
+
+.cta-btn:hover {
+    box-shadow: 0 0 25px rgba(212,175,55,1);
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 26px;
+    height: 2px;
+    background: #d4af37;
+    margin: 4px 0;
+}
+
+/* ===== HERO TEXT ===== */
+.hero-content {
     max-width: 1100px;
     margin: auto;
 }
 
-h2 {
-    color: #ffd700;
+.hero-content h1 {
+    font-size: 36px;
     margin-bottom: 30px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h2 {
     text-align: center;
-    letter-spacing: 1px;
-}
-
-/* GRIDS */
-.services, .destinations {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-/* BOXES */
-.box {
-    border: 1px solid #d4af37;
-    padding: 22px;
-    border-radius: 6px;
-    background: #0a0a0a;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.box:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 15px rgba(212,175,55,0.4);
-}
-
-.box h3 {
-    margin-top: 0;
     color: #ffd700;
+    margin-bottom: 45px;
 }
 
-ul {
-    padding-left: 18px;
+/* ===== GRID ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
 }
 
-ul li {
-    margin-bottom: 6px;
+.box {
+    background: #0a0a0a;
+    border: 1px solid #d4af37;
+    padding: 24px;
+    border-radius: 6px;
 }
 
-/* FOOTER */
+.box ul { padding-left: 18px; }
+
+/* ===== FOOTER ===== */
 footer {
-    background: #000;
-    color: #d4af37;
-    text-align: center;
-    padding: 25px 15px;
     border-top: 1px solid #d4af37;
-    font-size: 14px;
+    padding: 28px;
+    text-align: center;
 }
 
+/* ===== WHATSAPP ===== */
 .whatsapp-float {
     position: fixed;
     bottom: 25px;
     right: 25px;
     width: 60px;
     height: 60px;
+    background: #25D366;
     border-radius: 50%;
     text-align: center;
-    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    box-shadow: 0 0 15px rgba(37,211,102,0.6);
     z-index: 999;
-}
-
-.whatsapp-float:hover {
-    box-shadow: 0 0 25px rgba(37, 211, 102, 1);
 }
 
 .whatsapp-icon {
@@ -146,91 +209,190 @@ footer {
     height: 34px;
     margin-top: 13px;
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(0,0,0,0.95);
+        padding: 18px 22px;
+        flex-direction: column;
+        border: 1px solid rgba(212,175,55,0.4);
+        border-radius: 6px;
+    }
+
+    .nav-menu.open { display: flex; }
+    .hamburger { display: flex; }
+    .logo { max-width: 100px; }
+    .hero-content h1 { font-size: 28px; }
+}
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <header>
-    <img src="logo.jpg" alt="Journey’s Soul Logo" class="logo">
-	<h1>TRAVEL NOT JUST TO SEE THE WORLD… BUT TO FIND YOURSELF!!!</h1>
+    <div class="banner-nav" id="bannerNav">
+        <a href="/"><img src="logo.png" class="logo" alt="Journey’s Soul"></a>
 
+        <nav class="nav-menu" id="navMenu">
+            <a href="#services">Services</a>
+            <a href="#india">India</a>
+            <a href="#international">International</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="cta-btn">Plan Your Journey</a>
+        </nav>
+
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="hero-content">
+        <h1>TRAVEL NOT JUST TO SEE THE WORLD… BUT TO FIND YOURSELF!!!</h1>
+        <p>
+            <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
+            It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
+            Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
+            The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+        </p>
+    </div>
 </header>
 
-<!-- SERVICES -->
-<section>
-    <p>
-        <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
-        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+<section id="services">
+<h2>OUR SERVICES</h2>
+<div class="grid">
+<div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey, from flights and accommodations to tours and experiences.</p></div>
+<div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal interests, style, and aspirations.</p></div>
+<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support with private transfers and seamless assistance wherever you travel.</p></div>
+<div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries with precision, ensuring your trip reflects exactly what you desire.</p></div>
+<div class="box"><strong>Curated Collections</strong><p>A handpicked selection of exclusive resorts and luxury expedition cruises, carefully vetted for exceptional quality.</p></div>
+</div>
+</section>
+
+<section id="india">
+<h2>🌍 Vacation Destinations in India</h2>
+<div class="grid">
+<div class="box"><strong>Jammu & Kashmir</strong><ul><li>Srinagar</li><li>Gulmarg</li><li>Pahalgam</li></ul></div>
+<div class="box"><strong>Uttar Pradesh</strong><ul><li>Ayodhya</li><li>Varanasi</li></ul></div>
+<div class="box"><strong>Kerala</strong><ul><li>Munnar</li><li>Alleppey</li><li>Wayanad</li><li>Kochi</li></ul></div>
+<div class="box"><strong>Rajasthan</strong><ul><li>Jaipur</li><li>Udaipur</li><li>Jaisalmer</li></ul></div>
+<div class="box"><strong>Ladakh</strong><ul><li>Leh</li><li>Nubra Valley</li><li>Pangong Lake</li></ul></div>
+<div class="box"><strong>Himachal Pradesh</strong><ul><li>Manali</li><li>Shimla</li><li>Spiti Valley</li><li>Dharamshala</li></ul></div>
+<div class="box"><strong>Andaman & Nicobar</strong><ul><li>Port Blair</li><li>Havelock Island</li><li>Neil Island</li></ul></div>
+<div class="box"><strong>Uttarakhand</strong><ul><li>Rishikesh</li><li>Mussoorie</li><li>Nainital</li><li>Auli</li></ul></div>
+<div class="box"><strong>Meghalaya</strong><ul><li>Shillong</li><li>Cherrapunji</li><li>Mawlynnong</li><li>Dawki</li></ul></div>
+<div class="box"><strong>Sikkim</strong><ul><li>Gangtok</li><li>Tsomgo Lake</li><li>Lachung</li><li>Yumthang Valley</li></ul></div>
+</div>
+</section>
+
+<section id="international">
+<h2>🌍 International Travel Destinations</h2>
+<div class="grid">
+<div class="box">France 🇫🇷</div>
+<div class="box">Indonesia 🇮🇩</div>
+<div class="box">United Arab Emirates 🇦🇪</div>
+<div class="box">Switzerland 🇨🇭</div>
+<div class="box">Maldives 🇲🇻</div>
+<div class="box">Italy 🇮🇹</div>
+<div class="box">Thailand 🇹🇭</div>
+<div class="box">Japan 🇯🇵</div>
+<div class="box">Australia 🇦🇺</div>
+<div class="box">Greece 🇬🇷</div>
+<div class="box">New Zealand 🇳🇿</div>
+<div class="box">South Africa 🇿🇦</div>
+<div class="box">Spain 🇪🇸</div>
+<div class="box">Mauritius 🇲🇺</div>
+<div class="box">Sri Lanka 🇱🇰</div>
+</div>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+
+    <p style="
+        text-align:center;
+        font-size:16px;
+        line-height:2;
+        max-width:1000px;
+        margin:0 auto;
+    ">
+        <strong>Email:</strong>
+        <a href="mailto:journeys.soul.js@gmail.com" style="color:#d4af37; text-decoration:none; white-space:nowrap;">
+            journeys.soul.js@gmail.com
+        </a>
+        &nbsp; | &nbsp;
+
+        <strong>Phone:</strong>
+        <a href="tel:+919379173969" style="color:#d4af37; text-decoration:none; white-space:nowrap;">
+            +91 9379173969
+        </a>
+        /
+        <a href="tel:+919980874534" style="color:#d4af37; text-decoration:none; white-space:nowrap;">
+            9980874534
+        </a>
+        &nbsp; | &nbsp;
+
+        <strong>Facebook:</strong>
+        <a href="https://www.facebook.com/JassieSudharshan" target="_blank"
+           style="color:#d4af37; text-decoration:none;">
+            Jassie Sudharshan
+        </a>
+        &nbsp; | &nbsp;
+
+        <span style="white-space:nowrap;"><strong>Instagram:</strong>
+			<a href="https://www.instagram.com/journeysoulbyjs" target="_blank"
+			   style="color:#d4af37; text-decoration:none;">
+				Journey’s Soul by JS
+			</a>
+		</span>
+
+    </p>
+
+    <p style="
+        text-align:center;
+        margin-top:25px;
+        font-size:15px;
+        letter-spacing:0.5px;
+    ">
+        Let’s begin your journey — travel with soul.
     </p>
 </section>
 
-<!-- SERVICES -->
-<section>
-    <h2>OUR SERVICES</h2>
-    <div class="services">
-        <div class="box"><h3>Plan Your Escape</h3><p>We manage every detail of your journey, from flights and accommodations to tours and experiences.</p></div>
-        <div class="box"><h3>Tailored Experiences</h3><p>Custom travel plans designed around your personal interests, style, and aspirations.</p></div>
-        <div class="box"><h3>Expert Travel Concierge</h3><p>24/7 dedicated support with private transfers and seamless assistance wherever you travel.</p></div>
-        <div class="box"><h3>Bespoke Journey Design</h3><p>Meticulously crafted itineraries with precision, ensuring your trip reflects exactly what you desire.</p></div>
-        <div class="box"><h3>Curated Collections</h3><p>A handpicked selection of exclusive resorts and luxury expedition cruises, carefully vetted for exceptional quality.</p></div>
-    </div>
-</section>
-
-<!-- INDIA DESTINATIONS -->
-<section>
-    <h2>🌍 Vacation Destinations in India</h2>
-    <div class="destinations">
-        <div class="box"><strong>Jammu & Kashmir (UT)</strong><ul><li>Srinagar</li><li>Gulmarg</li><li>Pahalgam</li></ul></div>
-        <div class="box"><strong>Uttar Pradesh</strong><ul><li>Ayodhya</li><li>Varanasi</li></ul></div>
-        <div class="box"><strong>Kerala</strong><ul><li>Munnar</li><li>Alleppey</li><li>Wayanad</li><li>Kochi</li></ul></div>
-        <div class="box"><strong>Rajasthan</strong><ul><li>Jaipur</li><li>Udaipur</li><li>Jaisalmer</li></ul></div>
-        <div class="box"><strong>Ladakh (UT)</strong><ul><li>Leh</li><li>Nubra Valley</li><li>Pangong Lake</li></ul></div>
-        <div class="box"><strong>Himachal Pradesh</strong><ul><li>Manali</li><li>Shimla</li><li>Spiti Valley</li><li>Dharamshala</li></ul></div>
-        <div class="box"><strong>Andaman & Nicobar Islands (UT)</strong><ul><li>Port Blair</li><li>Havelock Island</li><li>Neil Island</li></ul></div>
-        <div class="box"><strong>Uttarakhand</strong><ul><li>Rishikesh</li><li>Mussoorie</li><li>Nainital</li><li>Auli</li></ul></div>
-        <div class="box"><strong>Meghalaya</strong><ul><li>Shillong</li><li>Cherrapunji</li><li>Mawlynnong</li><li>Dawki</li></ul></div>
-        <div class="box"><strong>Sikkim</strong><ul><li>Gangtok</li><li>Tsomgo Lake</li><li>Lachung</li><li>Yumthang Valley</li></ul></div>
-    </div>
-</section>
-
-<!-- INTERNATIONAL DESTINATIONS -->
-<section>
-    <h2>🌍 International Travel Destinations</h2>
-    <div class="destinations">
-        <div class="box">France 🇫🇷</div>
-        <div class="box">Indonesia 🇮🇩</div>
-        <div class="box">United Arab Emirates 🇦🇪</div>
-        <div class="box">Switzerland 🇨🇭</div>
-        <div class="box">Maldives 🇲🇻</div>
-        <div class="box">Italy 🇮🇹</div>
-        <div class="box">Thailand 🇹🇭</div>
-        <div class="box">Japan 🇯🇵</div>
-        <div class="box">Australia 🇦🇺</div>
-        <div class="box">Greece 🇬🇷</div>
-        <div class="box">New Zealand 🇳🇿</div>
-        <div class="box">South Africa 🇿🇦</div>
-        <div class="box">Spain 🇪🇸</div>
-        <div class="box">Mauritius 🇲🇺</div>
-        <div class="box">Sri Lanka 🇱🇰</div>
-    </div>
-</section>
 
 
-<!-- FOOTER -->
 <footer>
-    © 2026 Journey’s Soul. All Rights Reserved.
+© 2026 Journey’s Soul. All Rights Reserved.
 </footer>
 
-<!-- WHATSAPP BUTTON -->
-<a href="https://wa.me/919379173969"
-   class="whatsapp-float"
-   target="_blank"
-   aria-label="Chat on WhatsApp">
-    <img src="whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
+<a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
+<img src="whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
 </a>
+
+<script>
+const hamburger=document.getElementById("hamburger");
+const navMenu=document.getElementById("navMenu");
+const bannerNav=document.getElementById("bannerNav");
+
+hamburger.onclick=()=>navMenu.classList.toggle("open");
+
+window.addEventListener("scroll",()=>{
+const scrolled=window.scrollY>80;
+bannerNav.classList.toggle("sticky",scrolled);
+bannerNav.classList.toggle("centered",scrolled);
+
+document.querySelectorAll("section").forEach(sec=>{
+const link=document.querySelector(`.nav-menu a[href="#${sec.id}"]`);
+if(window.scrollY>=sec.offsetTop-200){
+document.querySelectorAll(".nav-menu a").forEach(a=>a.classList.remove("active"));
+if(link) link.classList.add("active");
+}
+});
+});
+</script>
+
 </body>
 </html>
