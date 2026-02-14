@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Journey’s Soul | Transformative Travel</title>
 
+<meta name="description" content="Journey’s Soul – Transformative luxury travel experiences across India and international destinations.">
+<meta name="author" content="Journey’s Soul">
+
 <style>
 html { scroll-behavior: smooth; }
 * { box-sizing: border-box; }
@@ -17,7 +20,7 @@ body {
     line-height: 1.7;
 }
 
-/* ================= HEADER / BANNER ================= */
+/* ================= HEADER ================= */
 header {
     position: relative;
     background: url('./images/banner.jpg') center / cover no-repeat;
@@ -32,12 +35,9 @@ header::before {
     z-index: 1;
 }
 
-header * {
-    position: relative;
-    z-index: 2;
-}
+header * { position: relative; z-index: 2; }
 
-/* ================= NAV BAR ================= */
+/* ================= NAVIGATION ================= */
 .banner-nav {
     position: absolute;
     top: 0;
@@ -57,7 +57,6 @@ header * {
     border-bottom: 1px solid rgba(212,175,55,0.4);
 }
 
-/* ================= LOGO ================= */
 .logo {
     max-width: 105px;
     animation: goldGlow 3s infinite ease-in-out;
@@ -69,7 +68,6 @@ header * {
     100% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.4)); }
 }
 
-/* ================= MENU ================= */
 .nav-menu {
     display: flex;
     justify-content: center;
@@ -94,11 +92,8 @@ header * {
     transition: width 0.25s ease;
 }
 
-.nav-menu a:hover::after {
-    width: 100%;
-}
+.nav-menu a:hover::after { width: 100%; }
 
-/* ================= HAMBURGER ================= */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -112,7 +107,7 @@ header * {
     margin: 2px 0;
 }
 
-/* ================= HERO TEXT (BELOW BANNER) ================= */
+/* ================= HERO ================= */
 .hero-text {
     padding: 70px 20px 80px;
     max-width: 1000px;
@@ -121,7 +116,8 @@ header * {
 }
 
 .hero-text h1 {
-    font-size: 34px;
+    font-size: clamp(26px, 4vw, 42px);
+    letter-spacing: 1px;
     margin-bottom: 18px;
 }
 
@@ -130,6 +126,14 @@ section {
     padding: 80px 20px;
     max-width: 1300px;
     margin: auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 h2 {
@@ -138,36 +142,37 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* ================= SERVICES ================= */
+/* ================= SERVICES GRID ================= */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
+    gap: 50px;
+    justify-content: center;
 }
 
 .box {
     background: #0a0a0a;
     border: 1px solid #d4af37;
-    padding: 24px;
+    padding: 30px;
     border-radius: 6px;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .box:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 0 28px rgba(212,175,55,0.75);
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(212,175,55,0.8);
 }
 
-/* ================= IMAGE GRID (INDIA + INTERNATIONAL) ================= */
+/* ================= IMAGE GRID ================= */
 .img-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     justify-items: center;
 }
 
 .img-box {
-    width: 200px;
+    width: 300px;
     height: 200px;
     border-radius: 10px;
     border: 1px solid #d4af37;
@@ -181,7 +186,6 @@ h2 {
 .img-box:hover {
     transform: scale(1.06);
     box-shadow: 0 0 30px rgba(212,175,55,0.8);
-    z-index: 2;
 }
 
 .img-box::after {
@@ -212,15 +216,15 @@ footer {
     z-index: 999;
 }
 
-.whatsapp-icon {
-    width: 50px;
-}
+.whatsapp-icon { width: 50px; }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-    header { min-height: 30vh; }
 
-    .hero-text h1 { font-size: 22px; }
+    header { 
+        min-height: 22vh;
+        background-position: center top;
+    }
 
     .nav-menu {
         display: none;
@@ -236,6 +240,11 @@ footer {
     .nav-menu.open { display: flex; }
     .hamburger { display: flex; }
 
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
     .img-box {
         width: 160px;
         height: 160px;
@@ -249,14 +258,12 @@ footer {
 <header>
     <div class="banner-nav" id="bannerNav">
         <a href="#"><img src="./images/logo.png" class="logo" alt="Journey’s Soul"></a>
-
         <nav class="nav-menu" id="navMenu">
             <a href="#services">Services</a>
             <a href="#india">India</a>
             <a href="#international">International</a>
             <a href="#contact">Contact</a>
         </nav>
-
         <div class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
         </div>
@@ -267,9 +274,7 @@ footer {
     <h1>TRAVEL NOT JUST TO SEE THE WORLD…<br>BUT TO FIND YOURSELF!!!</h1>
     <p>
         <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
-        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
+        Travel becomes soulful when it helps you connect with nature, cultures, people, and yourself.
     </p>
 </section>
 
@@ -308,15 +313,15 @@ footer {
         <div class="img-box" style="background-image:url('./images/switzerland.png')" data-title="Switzerland"></div>
         <div class="img-box" style="background-image:url('./images/maldives.png')" data-title="Maldives"></div>
         <div class="img-box" style="background-image:url('./images/italy.png')" data-title="Italy"></div>
-		<div class="img-box" style="background-image:url('./images/thailand.png')" data-title="Thailand"></div>
-		<div class="img-box" style="background-image:url('./images/japan.png')" data-title="Japan"></div>
+        <div class="img-box" style="background-image:url('./images/thailand.png')" data-title="Thailand"></div>
+        <div class="img-box" style="background-image:url('./images/japan.png')" data-title="Japan"></div>
         <div class="img-box" style="background-image:url('./images/australia.png')" data-title="Australia"></div>
         <div class="img-box" style="background-image:url('./images/greece.png')" data-title="Greece"></div>
-		<div class="img-box" style="background-image:url('./images/newzealand.png')" data-title="New Zealand"></div>
-		<div class="img-box" style="background-image:url('./images/southafrica.png')" data-title="South Africa"></div>
-        <div class="img-box" style="background-image:url('./images/spain.png')" data-title="Spain"></div>
-		<div class="img-box" style="background-image:url('./images/mauritius.png')" data-title="Mauritius"></div>
-        <div class="img-box" style="background-image:url('./images/srilanka.png')" data-title="Sri Lanka"></div>
+        <div class="img-box" style="background-image:url('./images/newzealand.png')" data-title="New Zealand"></div>
+        <div class="img-box" style="background-image:url('./images/southafrica.png')" data-title="South Africa"></div>
+        <div class="img-box" style="background-image:url('./images/spain.jpg')" data-title="Spain - Where Passion Meets Paradise!"></div>
+        <div class="img-box" style="background-image:url('./images/mauritius.jpg')" data-title="Mauritius - Where Paradise Comes Naturally!"></div>
+        <div class="img-box" style="background-image:url('./images/srilanka.jpg')" data-title="Sri Lanka - One Island, A Thousand Adventures!"></div>
     </div>
 </section>
 
@@ -352,7 +357,20 @@ document.querySelectorAll("#navMenu a").forEach(link => {
 window.addEventListener("scroll", () => {
     bannerNav.classList.toggle("sticky", window.scrollY > 80);
 });
+
+/* Fade-in animation */
+const sections = document.querySelectorAll("section");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.2 });
+
+sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
 </html>
+
