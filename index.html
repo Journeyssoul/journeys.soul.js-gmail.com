@@ -20,7 +20,7 @@ body {
     line-height: 1.7;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header {
     position: relative;
     background: url('./images/banner.jpg') center / cover no-repeat;
@@ -37,7 +37,7 @@ header::before {
 
 header * { position: relative; z-index: 2; }
 
-/* ================= NAVIGATION ================= */
+/* NAVIGATION */
 .banner-nav {
     position: absolute;
     top: 0;
@@ -92,6 +92,7 @@ header * { position: relative; z-index: 2; }
     transition: width 0.25s ease;
 }
 
+.nav-menu a:hover { color: #ffd700; }
 .nav-menu a:hover::after { width: 100%; }
 
 .hamburger {
@@ -107,7 +108,7 @@ header * { position: relative; z-index: 2; }
     margin: 2px 0;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero-text {
     padding: 70px 20px 80px;
     max-width: 1000px;
@@ -121,7 +122,7 @@ header * { position: relative; z-index: 2; }
     margin-bottom: 18px;
 }
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 section {
     padding: 80px 20px;
     max-width: 1300px;
@@ -142,7 +143,7 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* ================= SERVICES GRID ================= */
+/* SERVICES GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
@@ -163,16 +164,16 @@ h2 {
     box-shadow: 0 0 30px rgba(212,175,55,0.8);
 }
 
-/* ================= IMAGE GRID ================= */
+/* IMAGE GRID */
 .img-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
     justify-items: center;
 }
 
 .img-box {
-    width: 300px;
+    width: 200px;
     height: 200px;
     border-radius: 10px;
     border: 1px solid #d4af37;
@@ -201,14 +202,22 @@ h2 {
     text-align: center;
 }
 
-/* ================= FOOTER ================= */
+.tel-link, .social-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.tel-link:hover, .social-link:hover {
+    text-decoration: underline;
+}
+
 footer {
     border-top: 1px solid #d4af37;
     padding: 26px;
     text-align: center;
 }
 
-/* ================= WHATSAPP ================= */
 .whatsapp-float {
     position: fixed;
     bottom: 22px;
@@ -218,14 +227,8 @@ footer {
 
 .whatsapp-icon { width: 50px; }
 
-/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-
-    header { 
-        min-height: 22vh;
-        background-position: center top;
-    }
-
+    header { min-height: 22vh; }
     .nav-menu {
         display: none;
         position: absolute;
@@ -236,19 +239,10 @@ footer {
         flex-direction: column;
         border: 1px solid #d4af37;
     }
-
     .nav-menu.open { display: flex; }
     .hamburger { display: flex; }
-
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .img-box {
-        width: 160px;
-        height: 160px;
-    }
+    .grid { grid-template-columns: 1fr; gap: 30px; }
+    .img-box { width: 160px; height: 160px; }
 }
 </style>
 </head>
@@ -274,7 +268,9 @@ footer {
     <h1>TRAVEL NOT JUST TO SEE THE WORLD…<br>BUT TO FIND YOURSELF!!!</h1>
     <p>
         <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-        Travel becomes soulful when it helps you connect with nature, cultures, people, and yourself.
+        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
+        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
+        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
     </p>
 </section>
 
@@ -289,6 +285,7 @@ footer {
     </div>
 </section>
 
+<!-- INDIA SECTION -->
 <section id="india">
     <h2>🌍 Vacation Destinations in India</h2>
     <div class="img-grid">
@@ -304,6 +301,7 @@ footer {
     </div>
 </section>
 
+<!-- INTERNATIONAL SECTION -->
 <section id="international">
     <h2>🌍 International Travel Destinations</h2>
     <div class="img-grid">
@@ -319,19 +317,23 @@ footer {
         <div class="img-box" style="background-image:url('./images/greece.png')" data-title="Greece"></div>
         <div class="img-box" style="background-image:url('./images/newzealand.png')" data-title="New Zealand"></div>
         <div class="img-box" style="background-image:url('./images/southafrica.png')" data-title="South Africa"></div>
-        <div class="img-box" style="background-image:url('./images/spain.jpg')" data-title="Spain - Where Passion Meets Paradise!"></div>
-        <div class="img-box" style="background-image:url('./images/mauritius.jpg')" data-title="Mauritius - Where Paradise Comes Naturally!"></div>
-        <div class="img-box" style="background-image:url('./images/srilanka.jpg')" data-title="Sri Lanka - One Island, A Thousand Adventures!"></div>
+        <div class="img-box" style="background-image:url('./images/spain.png')" data-title="Spain"></div>
+        <div class="img-box" style="background-image:url('./images/mauritius.png')" data-title="Mauritius"></div>
+        <div class="img-box" style="background-image:url('./images/srilanka.jpg')" data-title="Sri Lanka"></div>
     </div>
 </section>
 
 <section id="contact">
     <h2>Contact Us</h2>
     <p style="text-align:center; line-height:2;">
-        <strong>Email: </strong><a href="mailto:journeys.soul.js@gmail.com">journeys.soul.js@gmail.com</a> |
-        <strong>Phone: </strong>+91 <a href="tel:+919379173969" class="tel-link">9379173969</a> / <a href="tel:+919980874534" class="tel-link">9980874534</a> |
-        <strong>Facebook: </strong><a href="https://www.facebook.com/share/1DQadAk79L/">Jassie Sudharshan<a> |
-        <strong>Instagram: </strong><a href="https://www.instagram.com/journeys_soul_by_js"> Journey’s Soul by JS</a>
+        <strong>Email:</strong><a href="email:journeys.soul.js@gmail.com" target="_blank" class="social-link"> journeys.soul.js@gmail.com |
+        <strong>Phone:</strong> 
+        <a href="tel:+919379173969" class="tel-link">9379173969</a> /
+        <a href="tel:+919980874534" class="tel-link">9980874534</a> |
+        <strong>Facebook:</strong> 
+        <a href="https://www.facebook.com/yourprofilelink" target="_blank" class="social-link">Jassie Sudharshan</a> |
+        <strong>Instagram:</strong> 
+        <a href="https://www.instagram.com/yourprofilelink" target="_blank" class="social-link">Journey’s Soul by JS</a>
     </p>
 </section>
 
@@ -358,7 +360,6 @@ window.addEventListener("scroll", () => {
     bannerNav.classList.toggle("sticky", window.scrollY > 80);
 });
 
-/* Fade-in animation */
 const sections = document.querySelectorAll("section");
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -373,5 +374,3 @@ sections.forEach(section => observer.observe(section));
 
 </body>
 </html>
-
-            
