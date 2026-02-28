@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journey’s Soul | Transformative Travel</title>
+<title>Journey’s Soul | Luxury Travel & International Tour Packages</title>
 
 <meta name="description" content="Journey’s Soul – Transformative luxury travel experiences across India and international destinations.">
 <meta name="author" content="Journey’s Soul">
+<link rel="icon" type="image/png" href="./images/logo.png">
 
 <style>
 html { scroll-behavior: smooth; }
@@ -42,30 +43,33 @@ header * { position: relative; z-index: 2; }
     position: absolute;
     top: 0;
     width: 100%;
-    height: 50px;
+    height: 60px;
     padding: 0 20px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .banner-nav.sticky {
     position: fixed;
-    background: rgba(0,0,0,0.92);
-    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(212,175,55,0.4);
 }
 
+/* Logo hidden initially */
 .logo {
-    max-width: 105px;
-    animation: goldGlow 3s infinite ease-in-out;
+    max-width: 95px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-@keyframes goldGlow {
-    0% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.4)); }
-    50% { filter: drop-shadow(0 0 14px rgba(212,175,55,0.9)); }
-    100% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.4)); }
+.banner-nav.sticky .logo {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .nav-menu {
@@ -105,7 +109,7 @@ header * { position: relative; z-index: 2; }
     width: 22px;
     height: 2px;
     background: #d4af37;
-    margin: 2px 0;
+    margin: 3px 0;
 }
 
 /* HERO */
@@ -118,8 +122,8 @@ header * { position: relative; z-index: 2; }
 
 .hero-text h1 {
     font-size: clamp(26px, 4vw, 42px);
-    letter-spacing: 1px;
     margin-bottom: 18px;
+    text-shadow: 0 0 10px rgba(212,175,55,0.6);
 }
 
 /* SECTIONS */
@@ -143,7 +147,7 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* SERVICES GRID */
+/* SERVICES */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
@@ -174,34 +178,31 @@ h2 {
 
 .img-box {
     width: 300px;
-    height: 200px;
-    border-radius: 10px;
-    border: 1px solid #d4af37;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.img-box:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 30px rgba(212,175,55,0.8);
-}
-
-.img-box::after {
-    content: attr(data-title);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.6);
-    color: #ffd700;
-    font-size: 14px;
-    padding: 8px;
     text-align: center;
 }
 
+.img-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    border: 1px solid #d4af37;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.img-box img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(212,175,55,0.8);
+}
+
+.img-title {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffd700;
+}
+
+/* CONTACT */
 .tel-link, .social-link {
     color: #ffd700;
     text-decoration: none;
@@ -228,21 +229,25 @@ footer {
 .whatsapp-icon { width: 50px; }
 
 @media (max-width: 768px) {
-    header { min-height: 22vh; }
+    header { min-height: 30vh; }
+
     .nav-menu {
         display: none;
         position: absolute;
-        top: 50px;
+        top: 60px;
         right: 12px;
         background: #000;
         padding: 12px;
         flex-direction: column;
         border: 1px solid #d4af37;
     }
+
     .nav-menu.open { display: flex; }
     .hamburger { display: flex; }
+
     .grid { grid-template-columns: 1fr; gap: 30px; }
-    .img-box { width: 250px; height: 160px; }
+    .img-box { width: 250px; }
+    .img-box img { height: 160px; }
 }
 </style>
 </head>
@@ -250,123 +255,125 @@ footer {
 <body>
 
 <header>
-    <div class="banner-nav" id="bannerNav">
-        <a href="#"><img src="./images/logo.png" class="logo" alt="Journey’s Soul"></a>
-        <nav class="nav-menu" id="navMenu">
-            <a href="#services">Services</a>
-            <a href="#india">India</a>
-            <a href="#international">International</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
-    </div>
+<div class="banner-nav" id="bannerNav">
+<a href="#"><img src="./images/logo.png" class="logo" alt="Journey’s Soul"></a>
+
+<nav class="nav-menu" id="navMenu">
+<a href="#services">Services</a>
+<a href="#india">India</a>
+<a href="#international">International</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="hamburger" id="hamburger">
+<span></span><span></span><span></span>
+</div>
+</div>
 </header>
 
 <section class="hero-text">
-    <h1>TRAVEL NOT JUST TO SEE THE WORLD…<br>BUT TO FIND YOURSELF!!!</h1>
-    <p>
-        <strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-        It’s not only about the destination, but the essence, feelings, and memories that stay with you long after the trip ends.
-        Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-        The ‘soul’ of a journey is the transformation it brings, the stories it leaves behind, and the way it changes your perspective on life.
-    </p>
+<h1>TRAVEL NOT JUST TO SEE THE WORLD…<br>BUT TO FIND YOURSELF!!!</h1>
+<p>
+<strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
+Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
+The ‘soul’ of a journey is the transformation it brings and the stories it leaves behind.
+</p>
 </section>
 
 <section id="services">
-    <h2>OUR SERVICES</h2>
-    <div class="grid">
-        <div class="box"><strong>Plan Your Escape</strong><p>We manage every detail of your journey, from flights and accommodations to tours and experiences.</p></div>
-        <div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal interests, style, and aspirations.</p></div>
-        <div class="box"><strong>Expert Travel Concierge</strong><p>24/7 dedicated support with private transfers and seamless assistance wherever you travel.</p></div>
-        <div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries with precision, ensuring your trip reflects exactly what you desire.</p></div>
-        <div class="box"><strong>Curated Collections</strong><p>A handpicked selection of exclusive resorts and luxury expedition cruises, carefully vetted for exceptional quality.</p></div>
-    </div>
+<h2>OUR SERVICES</h2>
+<div class="grid">
+<div class="box"><strong>Plan Your Escape</strong><p>We manage flights, hotels, tours and complete travel coordination.</p></div>
+<div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal style and aspirations.</p></div>
+<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 premium assistance with seamless global support.</p></div>
+<div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries tailored exactly to your expectations.</p></div>
+<div class="box"><strong>Curated Collections</strong><p>Exclusive resorts and luxury cruise experiences worldwide.</p></div>
+</div>
 </section>
 
-<!-- INDIA SECTION -->
 <section id="india">
-    <h2>🌍 Vacation Destinations in India</h2>
-    <div class="img-grid">
-        <div class="img-box" style="background-image:url('./images/jammukashmir.png')" data-title="Jammu & Kashmir"></div>
-        <div class="img-box" style="background-image:url('./images/uttarpradesh.png')" data-title="Uttar Pradesh"></div>
-        <div class="img-box" style="background-image:url('./images/kerala.png')" data-title="Kerala"></div>
-        <div class="img-box" style="background-image:url('./images/rajasthan.png')" data-title="Rajasthan"></div>
-        <div class="img-box" style="background-image:url('./images/ladakh.png')" data-title="Ladakh"></div>
-        <div class="img-box" style="background-image:url('./images/uttarakhand.png')" data-title="Uttarakhand"></div>
-        <div class="img-box" style="background-image:url('./images/meghalaya.png')" data-title="Meghalaya"></div>
-        <div class="img-box" style="background-image:url('./images/sikkim.png')" data-title="Sikkim"></div>
-        <div class="img-box" style="background-image:url('./images/andaman.png')" data-title="Andaman & Nicobar"></div>
-    </div>
+<h2>🌍 Vacation Destinations in India</h2>
+<div class="img-grid">
+<div class="img-box"><img src="./images/jammukashmir.png"><div class="img-title">Jammu & Kashmir</div></div>
+<div class="img-box"><img src="./images/uttarpradesh.png"><div class="img-title">Uttar Pradesh</div></div>
+<div class="img-box"><img src="./images/kerala.png"><div class="img-title">Kerala</div></div>
+<div class="img-box"><img src="./images/rajasthan.png"><div class="img-title">Rajasthan</div></div>
+<div class="img-box"><img src="./images/ladakh.png"><div class="img-title">Ladakh</div></div>
+<div class="img-box"><img src="./images/uttarakhand.png"><div class="img-title">Uttarakhand</div></div>
+<div class="img-box"><img src="./images/meghalaya.png"><div class="img-title">Meghalaya</div></div>
+<div class="img-box"><img src="./images/sikkim.png"><div class="img-title">Sikkim</div></div>
+<div class="img-box"><img src="./images/andaman.png"><div class="img-title">Andaman & Nicobar</div></div>
+</div>
 </section>
 
-<!-- INTERNATIONAL SECTION -->
 <section id="international">
-    <h2>🌍 International Travel Destinations</h2>
-    <div class="img-grid">
-        <div class="img-box" style="background-image:url('./images/france.jpg')" data-title="France"></div>
-        <div class="img-box" style="background-image:url('./images/indonesia.jpg')" data-title="Indonesia"></div>
-        <div class="img-box" style="background-image:url('./images/uae.jpg')" data-title="United Arab Emirates"></div>
-        <div class="img-box" style="background-image:url('./images/switzerland.jpg')" data-title="Switzerland"></div>
-        <div class="img-box" style="background-image:url('./images/maldives.jpg')" data-title="Maldives"></div>
-        <div class="img-box" style="background-image:url('./images/italy.jpg')" data-title="Italy"></div>
-        <div class="img-box" style="background-image:url('./images/thailand.jpg')" data-title="Thailand"></div>
-        <div class="img-box" style="background-image:url('./images/japan.jpg')" data-title="Japan"></div>
-        <div class="img-box" style="background-image:url('./images/australia.jpg')" data-title="Australia"></div>
-        <div class="img-box" style="background-image:url('./images/greece.jpg')" data-title="Greece"></div>
-        <div class="img-box" style="background-image:url('./images/newzealand.jpg')" data-title="New Zealand"></div>
-        <div class="img-box" style="background-image:url('./images/southafrica.jpg')" data-title="South Africa"></div>
-        <div class="img-box" style="background-image:url('./images/spain.jpg')" data-title="Spain - Where Passion Meets Paradise!"></div>
-        <div class="img-box" style="background-image:url('./images/mauritius.jpg')" data-title="Mauritius - Where Paradise Comes Naturally!"></div>
-        <div class="img-box" style="background-image:url('./images/srilanka.jpg')" data-title="Sri Lanka - One Island, A Thousand Adventures!"></div>
-    </div>
+<h2>🌍 International Travel Destinations</h2>
+<div class="img-grid">
+<div class="img-box"><img src="./images/france.jpg"><div class="img-title">France</div></div>
+<div class="img-box"><img src="./images/indonesia.jpg"><div class="img-title">Indonesia</div></div>
+<div class="img-box"><img src="./images/uae.jpg"><div class="img-title">United Arab Emirates</div></div>
+<div class="img-box"><img src="./images/switzerland.jpg"><div class="img-title">Switzerland</div></div>
+<div class="img-box"><img src="./images/maldives.jpg"><div class="img-title">Maldives</div></div>
+<div class="img-box"><img src="./images/italy.jpg"><div class="img-title">Italy</div></div>
+<div class="img-box"><img src="./images/thailand.jpg"><div class="img-title">Thailand</div></div>
+<div class="img-box"><img src="./images/japan.jpg"><div class="img-title">Japan</div></div>
+<div class="img-box"><img src="./images/australia.jpg"><div class="img-title">Australia</div></div>
+<div class="img-box"><img src="./images/greece.jpg"><div class="img-title">Greece</div></div>
+<div class="img-box"><img src="./images/newzealand.jpg"><div class="img-title">New Zealand</div></div>
+<div class="img-box"><img src="./images/southafrica.jpg"><div class="img-title">South Africa</div></div>
+<div class="img-box"><img src="./images/spain.jpg"><div class="img-title">Spain - Where Passion Meets Paradise!</div></div>
+<div class="img-box"><img src="./images/mauritius.jpg"><div class="img-title">Mauritius - Where Paradise Comes Naturally!</div></div>
+
+<div class="img-box"><a href="./countries/srilanka.html" class="destination-link"><img src="./images/srilanka.jpg" alt="Sri Lanka"><div class="img-title">Sri Lanka - One Island, A Thousand Adventures!</div></a></div>
+</div>
 </section>
 
 <section id="contact">
-    <h2>Contact Us</h2>
-    <p style="text-align:center; line-height:2;">
-        <strong>Email:</strong><a href="email:journeys.soul.js@gmail.com" target="_blank" class="social-link"> journeys.soul.js@gmail.com |
-        <strong>Phone:</strong> 
-        <a href="tel:+919379173969" class="tel-link">9379173969</a> /
-        <a href="tel:+919980874534" class="tel-link">9980874534</a> |
-        <strong>Facebook:</strong> 
-        <a href="https://www.facebook.com/share/1DQadAk79L/" target="_blank" class="social-link">Jassie Sudharshan</a> |
-        <strong>Instagram:</strong> 
-        <a href="https://www.instagram.com/journeys_soul_by_js" target="_blank" class="social-link">Journey’s Soul by JS</a>
-    </p>
+<h2>Contact Us</h2>
+<p style="text-align:center; line-height:2;">
+<strong>Email:</strong> 
+<a href="mailto:journeys.soul.js@gmail.com" class="social-link">journeys.soul.js@gmail.com</a> |
+<strong>Phone:</strong> 
+<a href="tel:+919379173969" class="tel-link">9379173969</a> /
+<a href="tel:+919980874534" class="tel-link">9980874534</a> |
+<strong>Facebook:</strong>
+<a href="https://www.facebook.com/share/1DQadAk79L/" target="_blank" class="social-link">Jassie Sudharshan</a> |
+<strong>Instagram:</strong>
+<a href="https://www.instagram.com/journeys_soul_by_js" target="_blank" class="social-link">Journey’s Soul by JS</a>
+</p>
 </section>
 
 <footer>
-    © 2026 Journey’s Soul. All Rights Reserved.
+<p>© 2026 Journey’s Soul. All Rights Reserved.</p>
+<p>Luxury Travel Experiences | India & Worldwide</p>
 </footer>
 
 <a href="https://wa.me/919379173969" class="whatsapp-float" target="_blank">
-    <img src="./images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
+<img src="./images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
 </a>
 
 <script>
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
 const bannerNav = document.getElementById("bannerNav");
+const header = document.querySelector("header");
 
 hamburger.onclick = () => navMenu.classList.toggle("open");
 
 document.querySelectorAll("#navMenu a").forEach(link => {
-    link.onclick = () => navMenu.classList.remove("open");
+link.onclick = () => navMenu.classList.remove("open");
 });
 
 window.addEventListener("scroll", () => {
-    bannerNav.classList.toggle("sticky", window.scrollY > 80);
+const headerHeight = header.offsetHeight;
+bannerNav.classList.toggle("sticky", window.scrollY > headerHeight - 100);
 });
 
 const sections = document.querySelectorAll("section");
 const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        }
-    });
+entries.forEach(entry => {
+if (entry.isIntersecting) entry.target.classList.add("visible");
+});
 }, { threshold: 0.2 });
 
 sections.forEach(section => observer.observe(section));
