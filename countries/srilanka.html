@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journey’s Soul | Luxury Travel & International Tour Packages</title>
+<title>Journey’s Soul | Luxury Travel & Sri Lanka Tour</title>
 
-<meta name="description" content="Journey’s Soul – Transformative luxury travel experiences across India and international destinations.">
+<meta name="description" content="Discover Sri Lanka with Journey’s Soul – Beaches, culture, wildlife and scenic landscapes.">
 <meta name="author" content="Journey’s Soul">
-<link rel="icon" type="image/png" href="./images/logo.png">
+<link rel="icon" type="image/png" href="../images/logo.png">
 
 <style>
 html { scroll-behavior: smooth; }
@@ -24,22 +24,11 @@ body {
 /* HEADER */
 header {
     position: relative;
-    
 }
-
-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 1;
-}
-
-header * { position: relative; z-index: 2; }
 
 /* NAVIGATION */
 .banner-nav {
-    position: absolute;
+    position: fixed;          /* FIXED MENU */
     top: 0;
     width: 100%;
     height: 60px;
@@ -48,20 +37,9 @@ header * { position: relative; z-index: 2; }
     grid-template-columns: auto 1fr auto;
     align-items: center;
     z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.banner-nav.sticky {
-    position: fixed;
     background: rgba(0,0,0,0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(212,175,55,0.4);
-}
-
-
-.banner-nav.sticky .logo {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .nav-menu {
@@ -91,22 +69,9 @@ header * { position: relative; z-index: 2; }
 .nav-menu a:hover { color: #ffd700; }
 .nav-menu a:hover::after { width: 100%; }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 22px;
-    height: 2px;
-    background: #d4af37;
-    margin: 3px 0;
-}
-
 /* HERO */
 .hero-text {
-    padding: 70px 20px 80px;
+    padding: 120px 20px 60px;   /* Extra top padding for fixed nav */
     max-width: 1000px;
     margin: auto;
     text-align: center;
@@ -139,27 +104,6 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* SERVICES */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
-    gap: 50px;
-    justify-content: center;
-}
-
-.box {
-    background: #0a0a0a;
-    border: 1px solid #d4af37;
-    padding: 30px;
-    border-radius: 6px;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 30px rgba(212,175,55,0.8);
-}
-
 /* IMAGE GRID */
 .img-grid {
     display: grid;
@@ -168,62 +112,13 @@ h2 {
     justify-items: center;
 }
 
-.img-box {
-    width: 300px;
-    text-align: center;
-}
-
-.img-box img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-    border: 1px solid #d4af37;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.img-box img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(212,175,55,0.8);
-}
-
-.img-title {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ffd700;
-}
-
-/* CONTACT */
-.tel-link, .social-link {
-    color: #ffd700;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.tel-link:hover, .social-link:hover {
-    text-decoration: underline;
-}
-
-footer {
-    border-top: 1px solid #d4af37;
-    padding: 26px;
-    text-align: center;
-}
-
-.whatsapp-float {
-    position: fixed;
-    bottom: 22px;
-    right: 10px;
-    z-index: 999;
-}
-
 /* FLIP CARD */
 .img-box {
     width: 300px;
     height: 200px;
     perspective: 1000px;
     cursor: pointer;
+    text-align: center;
 }
 
 .flip-card-inner {
@@ -266,30 +161,51 @@ footer {
     font-size: 14px;
 }
 
+.img-title {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffd700;
+}
 
+/* CONTACT */
+.tel-link, .social-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.tel-link:hover, .social-link:hover {
+    text-decoration: underline;
+}
+
+footer {
+    border-top: 1px solid #d4af37;
+    padding: 26px;
+    text-align: center;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 22px;
+    right: 10px;
+    z-index: 999;
+}
 
 .whatsapp-icon { width: 50px; }
 
+/* MOBILE */
 @media (max-width: 768px) {
-    header { min-height: 30vh; }
 
     .nav-menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 12px;
-        background: #000;
-        padding: 12px;
-        flex-direction: column;
-        border: 1px solid #d4af37;
+        flex-wrap: wrap;
+        gap: 14px;
+        font-size: 13px;
     }
 
-    .nav-menu.open { display: flex; }
-    .hamburger { display: flex; }
-
-    .grid { grid-template-columns: 1fr; gap: 30px; }
-    .img-box { width: 250px; }
-    .img-box img { height: 160px; }
+    .img-box {
+        width: 250px;
+        height: 160px;
+    }
 }
 </style>
 </head>
@@ -297,47 +213,80 @@ footer {
 <body>
 
 <header>
-<div class="banner-nav" id="bannerNav">
-<a href="#"><img src="../images/logo.png" class="logo" alt="Journey’s Soul"></a>
+<div class="banner-nav">
+<a href="../index.html">
+<img src="../images/logo.png" alt="Journey’s Soul" style="max-width:95px;">
+</a>
 
-<nav class="nav-menu" id="navMenu">
+<nav class="nav-menu">
 <a href="../index.html">Back</a>
 <a href="#attractions">Top Attractions</a>
 <a href="#contact">Contact</a>
 </nav>
-
-<div class="hamburger" id="hamburger">
-<span></span><span></span><span></span>
-</div>
 </div>
 </header>
 
-
-
 <section class="hero-text">
-<div class="logo-scroll">
-    <marquee behavior="scroll" direction="left">
-        🌴 Sri Lanka Tourism | Sigiriya Rock Fortress | Ella Scenic Train Journey | Yala National Park | Galle Fort 🌴
-    </marquee>
+<div>
+<marquee behavior="scroll" direction="left">
+🌴 Sri Lanka Tourism | Sigiriya Rock Fortress | Ella Scenic Train Journey | Yala National Park | Galle Fort 🌴
+</marquee>
 </div>
 <h1>Discover The Beauty of Sri Lanka</h1>
-<p>
-<strong>Explore beaches, culture, wildlife and scenic landscapes</p>
+<p><strong>Explore beaches, culture, wildlife and scenic landscapes</strong></p>
 </section>
-
 
 <section id="attractions">
 <h2>Top Attractions</h2>
 <div class="img-grid">
 
-<div class="img-box" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-front"><img src="../countries/srilanka1.jpg" alt="Galle"></div><div class="flip-back">Details of Sigiriya Rock Fortress</div></div><div class="img-title">Sigiriya Rock Fortress</div></div>
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka1.jpg" alt="Sigiriya Rock Fortress">
+</div>
+<div class="flip-back">
+Details of Sigiriya Rock Fortress
+</div>
+</div>
+<div class="img-title">Sigiriya Rock Fortress</div>
+</div>
 
-<div class="img-box" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-front"><img src="../countries/srilanka2.jpg" alt="Galle"></div><div class="flip-back">Details of Ella Scenic Train Journey</div></div><div class="img-title">Ella Scenic Train Journey</div></div>
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka2.jpg" alt="Ella Scenic Train Journey">
+</div>
+<div class="flip-back">
+Details of Ella Scenic Train Journey
+</div>
+</div>
+<div class="img-title">Ella Scenic Train Journey</div>
+</div>
 
-<div class="img-box" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-front"><img src="../countries/srilanka3.jpg" alt="Galle"></div><div class="flip-back">Details of Yala National Park</div></div><div class="img-title">Yala National Park</div></div>
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka3.jpg" alt="Yala National Park">
+</div>
+<div class="flip-back">
+Details of Yala National Park
+</div>
+</div>
+<div class="img-title">Yala National Park</div>
+</div>
 
-
-<div class="img-box" onclick="this.classList.toggle('flipped')"><div class="flip-card-inner"><div class="flip-front"><img src="../countries/srilanka4.jpg" alt="Galle"></div><div class="flip-back">Details of Galle Fort</div></div><div class="img-title">Galle Fort</div></div>
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka4.jpg" alt="Galle Fort">
+</div>
+<div class="flip-back">
+Details of Galle Fort
+</div>
+</div>
+<div class="img-title">Galle Fort</div>
+</div>
 
 </div>
 </section>
@@ -367,23 +316,8 @@ footer {
 </a>
 
 <script>
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
-const bannerNav = document.getElementById("bannerNav");
-const header = document.querySelector("header");
-
-hamburger.onclick = () => navMenu.classList.toggle("open");
-
-document.querySelectorAll("#navMenu a").forEach(link => {
-link.onclick = () => navMenu.classList.remove("open");
-});
-
-window.addEventListener("scroll", () => {
-const headerHeight = header.offsetHeight;
-bannerNav.classList.toggle("sticky", window.scrollY > headerHeight - 100);
-});
-
 const sections = document.querySelectorAll("section");
+
 const observer = new IntersectionObserver(entries => {
 entries.forEach(entry => {
 if (entry.isIntersecting) entry.target.classList.add("visible");
@@ -395,3 +329,4 @@ sections.forEach(section => observer.observe(section));
 
 </body>
 </html>
+
