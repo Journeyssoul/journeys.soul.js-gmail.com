@@ -228,24 +228,44 @@ footer {
 .whatsapp-icon { width: 50px; }
 
 /* MOBILE */
-@media (max-width: 768px) {
-    header { min-height: 30vh; }
+@media (max-width: 1024px) {
 
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 12px;
-        background: #000;
-        padding: 12px;
-        flex-direction: column;
-        border: 1px solid #d4af37;
+    header {
+        background-size: contain;   /* Show full image */
+        background-position: top center;
+        background-color: #000;     /* Fill empty space */
+        min-height: auto;
+        height: auto;
+        padding-top: 200px;          /* Space for nav */
     }
 
-    .nav-menu.open { display: flex; }
-    .hamburger { display: flex; }
+}
 
-    .img-box img { height: 180px; }
+ /* Force 3-column layout */
+.banner-nav {
+	grid-template-columns: auto 1fr auto;
+}
+
+.nav-menu {
+	display: none;
+	position: absolute;
+	top: 60px;
+	right: 12px;
+	background: #000;
+	padding: 12px;
+	flex-direction: column;
+	border: 1px solid #d4af37;
+}
+
+.nav-menu.open { display: flex; }
+/* Move hamburger to right */
+.hamburger {
+	display: flex;
+	justify-self: end;   /* Push to right side */
+	align-items: center;
+}
+
+.img-box img { height: 180px; }
 }
 </style>
 </head>
