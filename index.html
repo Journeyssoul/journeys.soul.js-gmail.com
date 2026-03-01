@@ -24,8 +24,8 @@ body {
 /* HEADER */
 header {
     position: relative;
-    background: url('./images/banner.jpg') center / cover no-repeat;
-    min-height: 65vh;
+    background: url('./images/banner.jpg') center top / cover no-repeat;
+    min-height: 75vh;
 }
 
 header::before {
@@ -72,7 +72,7 @@ header * { position: relative; z-index: 2; }
     transform: translateY(0);
 }
 
-/* NAV */
+/* NAV MENU ALWAYS VISIBLE */
 .nav-menu {
     display: flex;
     justify-content: center;
@@ -100,30 +100,12 @@ header * { position: relative; z-index: 2; }
 .nav-menu a:hover { color: #ffd700; }
 .nav-menu a:hover::after { width: 100%; }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 22px;
-    height: 2px;
-    background: #d4af37;
-    margin: 3px 0;
-}
-
 /* HERO */
 .hero-text {
     padding: 70px 20px 80px;
     max-width: 1000px;
     margin: auto;
     text-align: center;
-}
-
-.hero-text h1 {
-    font-size: clamp(26px, 4vw, 42px);
-    margin-bottom: 18px;
 }
 
 /* SECTIONS */
@@ -147,7 +129,7 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* SERVICES GRID RESTORED */
+/* SERVICES GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -172,10 +154,6 @@ h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 40px;
-}
-
-.img-box {
-    width: 100%;
 }
 
 .img-box img {
@@ -227,7 +205,7 @@ footer {
 
 .whatsapp-icon { width: 50px; }
 
-/* MOBILE */
+/* MOBILE & TABLET */
 @media (max-width: 1024px) {
 
     header {
@@ -236,36 +214,21 @@ footer {
         background-color: #000;     /* Fill empty space */
         min-height: auto;
         height: auto;
-        padding-top: 200px;          /* Space for nav */
+        padding-top: 175px;          /* Space for nav */
     }
 
-}
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
 
- /* Force 3-column layout */
-.banner-nav {
-	grid-template-columns: auto 1fr auto;
-}
+    .nav-menu a {
+        font-size: 13px;
+    }
 
-.nav-menu {
-	display: none;
-	position: absolute;
-	top: 60px;
-	right: 12px;
-	background: #000;
-	padding: 12px;
-	flex-direction: column;
-	border: 1px solid #d4af37;
-}
-
-.nav-menu.open { display: flex; }
-/* Move hamburger to right */
-.hamburger {
-	display: flex;
-	justify-self: end;   /* Push to right side */
-	align-items: center;
-}
-
-.img-box img { height: 180px; }
+    .img-box img {
+        height: 180px;
+    }
 }
 </style>
 </head>
@@ -283,9 +246,6 @@ footer {
 <a href="#contact">Contact</a>
 </nav>
 
-<div class="hamburger" id="hamburger">
-<span></span><span></span><span></span>
-</div>
 </div>
 </header>
 
@@ -341,8 +301,12 @@ The ‘soul’ of a journey is the transformation it brings and the stories it l
 <div class="img-box"><img src="./images/southafrica.jpg"><div class="img-title">South Africa</div></div>
 <div class="img-box"><img src="./images/spain.jpg"><div class="img-title">Spain - Where Passion Meets Paradise!</div></div>
 <div class="img-box"><img src="./images/mauritius.jpg"><div class="img-title">Mauritius - Where Paradise Comes Naturally!</div></div>
-
-<div class="img-box"><a href="./countries/srilanka.html" class="destination-link"><img src="./images/srilanka.jpg" alt="Sri Lanka"><div class="img-title">Sri Lanka - One Island, A Thousand Adventures!</div></a></div>
+<div class="img-box">
+<a href="./countries/srilanka.html" class="destination-link">
+<img src="./images/srilanka.jpg" alt="Sri Lanka">
+<div class="img-title">Sri Lanka - One Island, A Thousand Adventures!</div>
+</a>
+</div>
 </div>
 </section>
 
@@ -371,23 +335,15 @@ The ‘soul’ of a journey is the transformation it brings and the stories it l
 </a>
 
 <script>
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
 const bannerNav = document.getElementById("bannerNav");
 const header = document.querySelector("header");
-
-hamburger.onclick = () => navMenu.classList.toggle("open");
-
-document.querySelectorAll("#navMenu a").forEach(link => {
-    link.onclick = () => navMenu.classList.remove("open");
-});
 
 window.addEventListener("scroll", () => {
     const headerHeight = header.offsetHeight;
     bannerNav.classList.toggle("sticky", window.scrollY > headerHeight - 100);
 });
 
-/* SAFE SECTION ANIMATION */
+/* SECTION ANIMATION */
 const sections = document.querySelectorAll("section");
 
 if ('IntersectionObserver' in window) {
@@ -401,15 +357,13 @@ if ('IntersectionObserver' in window) {
 
     sections.forEach(section => observer.observe(section));
 } else {
-    /* Fallback: show all sections */
     sections.forEach(section => section.classList.add("visible"));
 }
 
-/* Mobile Safety: Always show sections */
 if (window.innerWidth <= 1024) {
     sections.forEach(section => section.classList.add("visible"));
 }
 </script>
+
 </body>
 </html>
-
