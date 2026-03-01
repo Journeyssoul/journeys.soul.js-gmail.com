@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journey’s Soul | Luxury Travel & International Tour Packages</title>
+<title>Journey’s Soul | Luxury Travel & Sri Lanka Tour</title>
 
-<meta name="description" content="Journey’s Soul – Transformative luxury travel experiences across India and international destinations.">
+<meta name="description" content="Discover Sri Lanka with Journey’s Soul – Beaches, culture, wildlife and scenic landscapes.">
 <meta name="author" content="Journey’s Soul">
-<link rel="icon" type="image/png" href="./images/logo.png">
+<link rel="icon" type="image/png" href="../images/logo.png">
 
 <style>
 html { scroll-behavior: smooth; }
@@ -24,23 +24,11 @@ body {
 /* HEADER */
 header {
     position: relative;
-    background: url('./images/banner.jpg') center top / cover no-repeat;
-    min-height: 75vh;
 }
-
-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    z-index: 1;
-}
-
-header * { position: relative; z-index: 2; }
 
 /* NAVIGATION */
 .banner-nav {
-    position: absolute;
+    position: fixed;          /* FIXED MENU */
     top: 0;
     width: 100%;
     height: 60px;
@@ -49,30 +37,11 @@ header * { position: relative; z-index: 2; }
     grid-template-columns: auto 1fr auto;
     align-items: center;
     z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.banner-nav.sticky {
-    position: fixed;
     background: rgba(0,0,0,0.95);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(212,175,55,0.4);
 }
 
-/* Logo */
-.logo {
-    max-width: 95px;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.banner-nav.sticky .logo {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* NAV MENU ALWAYS VISIBLE */
 .nav-menu {
     display: flex;
     justify-content: center;
@@ -102,10 +71,16 @@ header * { position: relative; z-index: 2; }
 
 /* HERO */
 .hero-text {
-    padding: 70px 20px 80px;
+    padding: 120px 20px 60px;   /* Extra top padding for fixed nav */
     max-width: 1000px;
     margin: auto;
     text-align: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(26px, 4vw, 42px);
+    margin-bottom: 18px;
+    text-shadow: 0 0 10px rgba(212,175,55,0.6);
 }
 
 /* SECTIONS */
@@ -129,58 +104,67 @@ h2 {
     margin-bottom: 45px;
 }
 
-/* SERVICES GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-}
-
-.box {
-    background: #0a0a0a;
-    border: 1px solid #d4af37;
-    padding: 30px;
-    border-radius: 6px;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 30px rgba(212,175,55,0.8);
-}
-
 /* IMAGE GRID */
 .img-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
+    justify-items: center;
 }
 
-.img-box img {
+/* FLIP CARD */
+.img-box {
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.flip-card-inner {
+    position: relative;
     width: 100%;
-    height: 220px;
-    object-fit: cover;
+    height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+.img-box.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     border-radius: 10px;
     border: 1px solid #d4af37;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.img-box img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(212,175,55,0.8);
+.flip-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.flip-back {
+    background: #0a0a0a;
+    color: #ffd700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    transform: rotateY(180deg);
+    font-size: 14px;
 }
 
 .img-title {
     margin-top: 10px;
     font-size: 14px;
     color: #ffd700;
-    text-align: center;
-}
-
-.destination-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
 }
 
 /* CONTACT */
@@ -188,6 +172,10 @@ h2 {
     color: #ffd700;
     text-decoration: none;
     font-weight: 600;
+}
+
+.tel-link:hover, .social-link:hover {
+    text-decoration: underline;
 }
 
 footer {
@@ -205,29 +193,18 @@ footer {
 
 .whatsapp-icon { width: 50px; }
 
-/* MOBILE & TABLET */
-@media (max-width: 1024px) {
-
-    header {
-        background-size: contain;   /* Show full image */
-        background-position: top center;
-        background-color: #000;     /* Fill empty space */
-        min-height: auto;
-        height: auto;
-        padding-top: 175px;          /* Space for nav */
-    }
+/* MOBILE */
+@media (max-width: 768px) {
 
     .nav-menu {
         flex-wrap: wrap;
         gap: 14px;
-    }
-
-    .nav-menu a {
         font-size: 13px;
     }
 
-    .img-box img {
-        height: 180px;
+    .img-box {
+        width: 250px;
+        height: 160px;
     }
 }
 </style>
@@ -236,92 +213,91 @@ footer {
 <body>
 
 <header>
-<div class="banner-nav" id="bannerNav">
-<a href="#"><img src="./images/logo.png" class="logo" alt="Journey’s Soul"></a>
+<div class="banner-nav">
+<a href="../index.html">
+<img src="../images/logo.png" alt="Journey’s Soul" style="max-width:95px;">
+</a>
 
-<nav class="nav-menu" id="navMenu">
-<a href="#services">Services</a>
-<a href="#india">India</a>
-<a href="#international">International</a>
+<nav class="nav-menu">
+<a href="../index.html">Back</a>
+<a href="#attractions">Top Attractions</a>
 <a href="#contact">Contact</a>
 </nav>
-
 </div>
 </header>
 
 <section class="hero-text">
-<h1>TRAVEL NOT JUST TO SEE THE WORLD…<br>BUT TO FIND YOURSELF!!!</h1>
-<p>
-<strong>“Journey’s Soul”</strong> means going beyond just visiting places—it’s about the inner experience that a journey creates within you.
-Travel becomes soulful when it helps you connect—with nature, cultures, people, and most importantly, with yourself.
-The ‘soul’ of a journey is the transformation it brings and the stories it leaves behind.
-</p>
-</section>
-
-<section id="services">
-<h2>OUR SERVICES</h2>
-<div class="grid">
-<div class="box"><strong>Plan Your Escape</strong><p>We manage flights, hotels, tours and complete travel coordination.</p></div>
-<div class="box"><strong>Tailored Experiences</strong><p>Custom travel plans designed around your personal style and aspirations.</p></div>
-<div class="box"><strong>Expert Travel Concierge</strong><p>24/7 premium assistance with seamless global support.</p></div>
-<div class="box"><strong>Bespoke Journey Design</strong><p>Meticulously crafted itineraries tailored exactly to your expectations.</p></div>
-<div class="box"><strong>Curated Collections</strong><p>Exclusive resorts and luxury cruise experiences worldwide.</p></div>
+<div>
+<marquee behavior="scroll" direction="left">
+🌴 Sri Lanka Tourism | Sigiriya Rock Fortress | Ella Scenic Train Journey | Yala National Park | Galle Fort 🌴
+</marquee>
 </div>
+<h1>Discover The Beauty of Sri Lanka</h1>
+<p><strong>Explore beaches, culture, wildlife and scenic landscapes</strong></p>
 </section>
 
-<section id="india">
-<h2>🌍 Vacation Destinations in India</h2>
+<section id="attractions">
+<h2>Top Attractions</h2>
 <div class="img-grid">
-<div class="img-box"><img src="./images/jammukashmir.png"><div class="img-title">Jammu & Kashmir</div></div>
-<div class="img-box"><img src="./images/uttarpradesh.png"><div class="img-title">Uttar Pradesh</div></div>
-<div class="img-box"><img src="./images/kerala.png"><div class="img-title">Kerala</div></div>
-<div class="img-box"><img src="./images/rajasthan.png"><div class="img-title">Rajasthan</div></div>
-<div class="img-box"><img src="./images/ladakh.png"><div class="img-title">Ladakh</div></div>
-<div class="img-box"><img src="./images/uttarakhand.png"><div class="img-title">Uttarakhand</div></div>
-<div class="img-box"><img src="./images/meghalaya.png"><div class="img-title">Meghalaya</div></div>
-<div class="img-box"><img src="./images/sikkim.png"><div class="img-title">Sikkim</div></div>
-<div class="img-box"><img src="./images/andaman.png"><div class="img-title">Andaman & Nicobar</div></div>
-</div>
-</section>
 
-<section id="international">
-<h2>🌍 International Travel Destinations</h2>
-<div class="img-grid">
-<div class="img-box"><img src="./images/france.jpg"><div class="img-title">France</div></div>
-<div class="img-box"><img src="./images/indonesia.jpg"><div class="img-title">Indonesia</div></div>
-<div class="img-box"><img src="./images/uae.jpg"><div class="img-title">United Arab Emirates</div></div>
-<div class="img-box"><img src="./images/switzerland.jpg"><div class="img-title">Switzerland</div></div>
-<div class="img-box"><img src="./images/maldives.jpg"><div class="img-title">Maldives</div></div>
-<div class="img-box"><img src="./images/italy.jpg"><div class="img-title">Italy</div></div>
-<div class="img-box"><img src="./images/thailand.jpg"><div class="img-title">Thailand</div></div>
-<div class="img-box"><img src="./images/japan.jpg"><div class="img-title">Japan</div></div>
-<div class="img-box"><img src="./images/australia.jpg"><div class="img-title">Australia</div></div>
-<div class="img-box"><img src="./images/greece.jpg"><div class="img-title">Greece</div></div>
-<div class="img-box"><img src="./images/newzealand.jpg"><div class="img-title">New Zealand</div></div>
-<div class="img-box"><img src="./images/southafrica.jpg"><div class="img-title">South Africa</div></div>
-<div class="img-box"><img src="./images/spain.jpg"><div class="img-title">Spain - Where Passion Meets Paradise!</div></div>
-<div class="img-box"><img src="./images/mauritius.jpg"><div class="img-title">Mauritius - Where Paradise Comes Naturally!</div></div>
-<div class="img-box">
-<a href="./countries/srilanka.html" class="destination-link">
-<img src="./images/srilanka.jpg" alt="Sri Lanka">
-<div class="img-title">Sri Lanka - One Island, A Thousand Adventures!</div>
-</a>
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka1.jpg" alt="Sigiriya Rock Fortress">
 </div>
+<div class="flip-back">
+Details of Sigiriya Rock Fortress
+</div>
+</div>
+<div class="img-title">Sigiriya Rock Fortress</div>
+</div>
+
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka2.jpg" alt="Ella Scenic Train Journey">
+</div>
+<div class="flip-back">
+Details of Ella Scenic Train Journey
+</div>
+</div>
+<div class="img-title">Ella Scenic Train Journey</div>
+</div>
+
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka3.jpg" alt="Yala National Park">
+</div>
+<div class="flip-back">
+Details of Yala National Park
+</div>
+</div>
+<div class="img-title">Yala National Park</div>
+</div>
+
+<div class="img-box" onclick="this.classList.toggle('flipped')">
+<div class="flip-card-inner">
+<div class="flip-front">
+<img src="../countries/srilanka4.jpg" alt="Galle Fort">
+</div>
+<div class="flip-back">
+Details of Galle Fort
+</div>
+</div>
+<div class="img-title">Galle Fort</div>
+</div>
+
 </div>
 </section>
 
 <section id="contact">
 <h2>Contact Us</h2>
 <p style="text-align:center; line-height:2;">
-<strong>Email:</strong> 
-<a href="mailto:journeys.soul.js@gmail.com" class="social-link">journeys.soul.js@gmail.com</a> |
-<strong>Phone:</strong> 
-<a href="tel:+919379173969" class="tel-link">9379173969</a> /
-<a href="tel:+919980874534" class="tel-link">9980874534</a> |
-<strong>Facebook:</strong>
-<a href="https://www.facebook.com/share/1DQadAk79L/" target="_blank" class="social-link">Jassie Sudharshan</a> |
-<strong>Instagram:</strong>
-<a href="https://www.instagram.com/journeys_soul_by_js" target="_blank" class="social-link">Journey’s Soul by JS</a>
+<strong>Email:</strong><a href="mailto:journeys.soul.js@gmail.com" class="social-link">journeys.soul.js@gmail.com</a><br>
+<strong>Phone:</strong><a href="tel:+919379173969" class="tel-link">9379173969</a> /<a href="tel:+919980874534" class="tel-link">9980874534</a><br>
+<strong>Facebook:</strong><a href="https://www.facebook.com/share/1DQadAk79L/" target="_blank" class="social-link">Jassie Sudharshan</a><br>
+<strong>Instagram:</strong><a href="https://www.instagram.com/journeys_soul_by_js" target="_blank" class="social-link">Journey’s Soul by JS</a>
 </p>
 </section>
 
@@ -331,38 +307,19 @@ The ‘soul’ of a journey is the transformation it brings and the stories it l
 </footer>
 
 <a href="https://wa.me/919379173969" class="whatsapp-float" target="_blank">
-<img src="./images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
+<img src="../images/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
 </a>
 
 <script>
-const bannerNav = document.getElementById("bannerNav");
-const header = document.querySelector("header");
-
-window.addEventListener("scroll", () => {
-    const headerHeight = header.offsetHeight;
-    bannerNav.classList.toggle("sticky", window.scrollY > headerHeight - 100);
-});
-
-/* SECTION ANIMATION */
 const sections = document.querySelectorAll("section");
 
-if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            }
-        });
-    }, { threshold: 0.15 });
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) entry.target.classList.add("visible");
+});
+}, { threshold: 0.2 });
 
-    sections.forEach(section => observer.observe(section));
-} else {
-    sections.forEach(section => section.classList.add("visible"));
-}
-
-if (window.innerWidth <= 1024) {
-    sections.forEach(section => section.classList.add("visible"));
-}
+sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
