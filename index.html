@@ -359,23 +359,37 @@ const header = document.querySelector("header");
 hamburger.onclick = () => navMenu.classList.toggle("open");
 
 document.querySelectorAll("#navMenu a").forEach(link => {
-link.onclick = () => navMenu.classList.remove("open");
+    link.onclick = () => navMenu.classList.remove("open");
 });
 
 window.addEventListener("scroll", () => {
-const headerHeight = header.offsetHeight;
-bannerNav.classList.toggle("sticky", window.scrollY > headerHeight - 100);
+    const headerHeight = header.offsetHeight;
+    bannerNav.classList.toggle("sticky", window.scrollY > headerHeight - 100);
 });
 
+/* SAFE SECTION ANIMATION */
 const sections = document.querySelectorAll("section");
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if (entry.isIntersecting) entry.target.classList.add("visible");
-});
-}, { threshold: 0.2 });
 
-sections.forEach(section => observer.observe(section));
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => observer.observe(section));
+} else {
+    /* Fallback: show all sections */
+    sections.forEach(section => section.classList.add("visible"));
+}
+
+/* Mobile Safety: Always show sections */
+if (window.innerWidth <= 1024) {
+    sections.forEach(section => section.classList.add("visible"));
+}
 </script>
-
 </body>
 </html>
+
